@@ -1,804 +1,1466 @@
-[23.04.2026 0:55] 🤫: <!DOCTYPE html>
+[23.04.2026 23:54] 🤫: <!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ГрунтВики — всё о Minecraft PE и Bedrock</title>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<title>MCPEHUB — Minecraft PE Аддоны, Моды, Скачать</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --grass:#5aaa2b; --grass2:#3d7a1a;
-  --dirt:#8b5e3c; --gold:#f5c518;
-  --diamond:#3de6e6; --red:#e84040; --purple:#bc8cff;
-  --bg:#131c14; --bg2:#1b2b1c; --bg3:#223324;
-  --border:#2e4a30; --card:#192619;
-  --text:#e8f5e0; --text2:#a8c890; --muted:#6a8860;
+/* ═══════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #0c0c0c;
+  color: #d4d4d4;
+  font-size: 14px;
+  line-height: 1.5;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.65;overflow-x:hidden}
+a { text-decoration: none; color: inherit; }
+img { display: block; width: 100%; }
 
-/* HEADER */
-header{position:sticky;top:0;z-index:999;background:rgba(14,26,14,.97);backdrop-filter:blur(16px);border-bottom:3px solid var(--grass2);box-shadow:0 2px 24px rgba(0,0,0,.5)}
-.hdr{max-width:1300px;margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;gap:18px}
-.logo{font-family:'Press Start 2P',monospace;font-size:13px;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:10px;flex-shrink:0}
-.logo-block{width:34px;height:34px;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:2px solid var(--dirt);border-radius:4px;overflow:hidden}
-.logo-block span{display:block}
-.g{background:#5aaa2b}.d{background:#8b5e3c}.s{background:#888}
-.logo .gr{color:var(--grass)}.logo .gl{color:var(--gold)}
-nav{display:flex;gap:2px}
-nav a{color:var(--text2);text-decoration:none;padding:6px 11px;border-radius:6px;font-size:13px;font-weight:700;transition:all .15s;white-space:nowrap}
-nav a:hover{color:var(--text);background:var(--bg3)}
-.srch{margin-left:auto;background:var(--bg3);border:2px solid var(--border);border-radius:8px;padding:0 12px;display:flex;align-items:center;gap:8px;transition:border-color .2s}
-.srch:focus-within{border-color:var(--grass)}
-.srch input{background:none;border:none;outline:none;color:var(--text);font-family:'Nunito',sans-serif;font-size:14px;font-weight:600;width:170px;padding:8px 0}
-.srch input::placeholder{color:var(--muted)}
+/* ═══════════════════════════════════════
+   VARIABLES
+═══════════════════════════════════════ */
+:root {
+  --blue: #2563eb;
+  --blue-h: #1d4ed8;
+  --green: #16a34a;
+  --tg: #0088cc;
+  --tg-h: #006ba8;
+  --surface: #141414;
+  --surface2: #1a1a1a;
+  --border: #222;
+  --border2: #2a2a2a;
+  --text: #e5e5e5;
+  --muted: #666;
+  --accent: #2563eb;
+}
 
-/* HERO */
-.hero{position:relative;min-height:560px;display:flex;align-items:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background-image:url('https://wallpapers.com/images/featured/minecraft-bedrock-edition-pictures-3vno2mdv7z8rbpkj.jpg');background-size:cover;background-position:center;filter:brightness(.42) saturate(1.3)}
-.hero-ov{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,26,14,.96) 40%,rgba(14,26,14,.3) 70%,transparent 100%)}
-.hero-ov2{position:absolute;bottom:0;left:0;right:0;height:130px;background:linear-gradient(transparent,var(--bg))}
-/* pixel stars */
-.stars{position:absolute;top:0;right:0;width:60%;height:100%;pointer-events:none}
-.star{position:absolute;background:#fff;border-radius:1px;animation:twinkle 3s ease-in-out infinite}
-@keyframes twinkle{0%,100%{opacity:.2}50%{opacity:.9}}
-.hero-cnt{position:relative;z-index:2;max-width:1300px;margin:0 auto;padding:80px 24px;width:100%}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(90,170,43,.15);border:2px solid rgba(90,170,43,.4);border-radius:8px;padding:6px 14px;font-family:'Press Start 2P',monospace;font-size:9px;color:var(--grass);margin-bottom:24px;animation:glow 3s ease-in-out infinite}
-@keyframes glow{0%,100%{box-shadow:0 0 0 0 rgba(90,170,43,.3)}50%{box-shadow:0 0 0 8px rgba(90,170,43,0)}}
-.hero h1{font-family:'Press Start 2P',monospace;font-size:clamp(20px,3.8vw,40px);line-height:1.5;color:var(--text);margin-bottom:18px;text-shadow:4px 4px 0 rgba(0,0,0,.6)}
-.hero h1 .hl{color:var(--grass)}.hero h1 .hl2{color:var(--gold)}
-.hero-sub{font-size:17px;font-weight:600;color:var(--text2);max-width:480px;margin-bottom:36px;line-height:1.6}
-.btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn1{display:inline-flex;align-items:center;gap:8px;background:var(--grass);color:#000;font-family:'Press Start 2P',monospace;font-size
-[23.04.2026 0:55] 🤫: :10px;padding:14px 22px;border-radius:8px;border:3px solid var(--grass2);box-shadow:0 4px 0 var(--grass2);cursor:pointer;transition:all .15s}
-.btn1:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--grass2)}
-.btn1:active{transform:translateY(2px);box-shadow:0 2px 0 var(--grass2)}
-.btn2{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);color:var(--text);font-family:'Press Start 2P',monospace;font-size:9px;padding:14px 20px;border-radius:8px;border:2px solid rgba(255,255,255,.15);cursor:pointer;transition:all .15s}
-.btn2:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3)}
+/* ═══════════════════════════════════════
+   ANNOUNCEMENT BAR
+═══════════════════════════════════════ */
+.announce {
+  background: var(--tg);
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.announce a {
+  background: rgba(255,255,255,.2);
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: background .15s;
+}
+.announce a:hover { background: rgba(255,255,255,.35); }
 
-/* STATS */
-.stats{max-width:1300px;margin:0 auto;padding:0 24px 56px;display:flex;gap:14px;flex-wrap:wrap;position:relative;z-index:2}
-.stat{background:var(--bg2);border:2px solid var(--border);border-radius:12px;padding:14px 22px;display:flex;align-items:center;gap:12px}
-.stat-icon{font-size:24px}
-.stat-n{font-family:'Press Start 2P',monospace;font-size:15px;color:var(--grass)}
-.stat-l{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+/* ═══════════════════════════════════════
+   HEADER
+═══════════════════════════════════════ */
+header {
+  background: #111;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 900;
+}
+.hdr {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 20px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.logo {
+  font-size: 21px;
+  font-weight: 900;
+  letter-spacing: -.5px;
+  flex-shrink: 0;
+  color: #fff;
+}
+.logo .blue { color: var(--blue); }
 
-/* PAGE */
-.page{max-width:1300px;margin:0 auto;padding:0 24px}
-section{padding:40px 0}
+nav { display: flex; align-items: center; gap: 2px; }
+nav a {
+  padding: 6px 11px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #888;
+  transition: all .15s;
+  white-space: nowrap;
+}
+nav a:hover { color: #fff; background: var(--surface2); }
 
-/* SEC TITLE */
-.stitle{font-family:'Press Start 2P',monospace;font-size:12px;color:var(--text);margin-bottom:28px;display:flex;align-items:center;gap:14px}
-.stitle::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,var(--border),transparent)}
+.hdr-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
 
-/* CATEGORIES */
-.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
-.cat-card{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:22px 18px;text-decoration:none;cursor:pointer;transition:all .2s;display:block;position:relative;overflow:hidden}
-.cat-card:hover{transform:translateY(-4px);border-color:var(--cc,var(--grass));box-shadow:0 12px 32px rgba(0,0,0,.4)}
-.cat-emoji{font-size:34px;margin-bottom:12px;display:block}
-.cat-name{font-family:'Press Start 2P',monospace;font-size:9px;color:var(--text);margin-bottom:6px;line-height:1.7}
-.cat-count{font-size:12px;color:var(--muted);font-weight:700}
-.cat-bar{height:3px;border-radius:3px;background:var(--cc,var(--grass));width:40px;margin-top:14px;transition:width .3s}
-.cat-card:hover .cat-bar{width:100%}
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 6px;
+  padding: 0 10px;
+}
+.search:focus-within { border-color: var(--blue); }
+.search input {
+  background: none;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--text);
+  width: 170px;
+  padding: 7px 0;
+}
+.search input::placeholder { color: var(--muted); }
 
-/* FEATURED */
-.feat-grid{display:grid;grid-template-columns:1.65fr 1fr;grid-template-rows:auto auto;gap:16px}
-.feat-card{border-radius:16px;overflow:hidden;position:relative;cursor:pointer;transition:transform .2s,box-shadow .2s;border:2px solid var(--border)}
-.feat-card:hover{transform:translateY(-4px);box-shadow:0 20px 48px rgba(0,0,0,.55);border-color:var(--grass2)}
-.feat-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
-.feat-card:hover img{transform:scale(1.05)}
-.feat-main{grid-row:1/3;min-height:400px}
-.feat-sm{height:192px}
-.feat-ov{position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,18,8,.96) 0%,rgba(8,18,8,.35) 55%,transparent 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:22px}
-.feat-cat{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--grass);background:rgba(90,170,43,.18);border:1px solid rgba(90,170,43,.4);border-radius:4px;padding:4px 8px;width:fit-content;margin-bottom:10px}
-.feat-title{font-size:20px;font-weight:800;color:var(--text);line-height:1.25;text-shadow:1px 2px 8px rgba(0,0,0,.8)}
-.feat-sm .feat-title{font-size:15px}
-.feat-desc{font-size:13px;color:var(--text2);margin-top:8px;line-height:1.45}
-.feat-arrow{margin-top:12px;font-family:'Press Start 2P',monospace;font-size:8px;color:var(--grass);display:inline-flex;align-items:center;gap:4px}
+.btn-tg {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--tg);
+  color: #fff;
+  padding: 7px 15px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: background .15s;
+  white-space: nowrap;
+}
+.btn-tg:hover { background: var(--tg-h); }
 
-/* TIPS BANNER */
-.tips-b{background:var(--bg2);border:2px solid var(--border);border-radius:16px;padding:28px 32px;position:relative;overflow:hidden;margin:8px 0}
-.tips-b::before{content:'';position:absolute;inset:0;background:url('https://wallpapers.com/images/featured/minecraft-bedrock-edition-pictures-3vno2mdv7z8rbpkj.jpg') center/cover;opacity:.05}
-.tips-b-in{position:relative;z-index:1}
-.tips-b-t{font-
-[23.04.2026 0:55] 🤫: family:'Press Start 2P',monospace;font-size:10px;color:var(--gold);margin-bottom:20px}
-.tips-row{display:flex;gap:14px;flex-wrap:wrap}
-.tip-pill{background:var(--bg3);border:2px solid var(--border);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px;flex:1;min-width:190px;transition:border-color .2s}
-.tip-pill:hover{border-color:var(--gold)}
-.tip-pill-ico{font-size:24px;flex-shrink:0}
-.tip-pill-txt{font-size:13px;color:var(--text2);font-weight:700;line-height:1.4}
+/* ═══════════════════════════════════════
+   HERO
+═══════════════════════════════════════ */
+.hero {
+  background: #0e1520;
+  border-bottom: 1px solid #1a2535;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 70% 50%, rgba(37,99,235,.12) 0%, transparent 70%),
+    url('https://i.ytimg.com/vi/IHzDTibLqsg/maxresdefault.jpg') center/cover;
+  opacity: .12;
+}
+.hero-in {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 52px 20px 48px;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.hero h1 {
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.15;
+  color: #fff;
+  margin-bottom: 14px;
+  letter-spacing: -.5px;
+}
+.hero h1 span { color: var
+[23.04.2026 23:54] 🤫: (--blue); }
+.hero p {
+  font-size: 15px;
+  color: #7a9cc4;
+  line-height: 1.65;
+  max-width: 460px;
+  margin-bottom: 28px;
+}
+.hero-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.hbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all .15s;
+  cursor: pointer;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.hbtn-primary { background: var(--blue); color: #fff; }
+.hbtn-primary:hover { background: var(--blue-h); }
+.hbtn-tg { background: var(--tg); color: #fff; }
+.hbtn-tg:hover { background: var(--tg-h); }
+.hbtn-outline { background: transparent; color: var(--text); border-color: var(--border2); }
+.hbtn-outline:hover { border-color: #444; background: var(--surface2); }
 
-/* ARTICLE CARDS */
-.arts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
-.art{background:var(--card);border:2px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .2s;display:flex;flex-direction:column}
-.art:hover{border-color:var(--ac,var(--grass));transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.45)}
-.art-iw{overflow:hidden;height:158px;position:relative}
-.art-iw img{width:100%;height:100%;object-fit:cover;transition:transform .35s;display:block}
-.art:hover .art-iw img{transform:scale(1.06)}
-.art-ph{width:100%;height:158px;display:flex;align-items:center;justify-content:center;font-size:48px;background:var(--bg3)}
-.art-body{padding:18px;flex:1;display:flex;flex-direction:column;gap:8px}
-.art-tag{font-family:'Press Start 2P',monospace;font-size:7px;padding:4px 8px;border-radius:4px;width:fit-content}
-.art-title{font-size:16px;font-weight:800;color:var(--text);line-height:1.3}
-.art-desc{font-size:13px;color:var(--text2);flex:1;line-height:1.5}
-.art-foot{display:flex;align-items:center;justify-content:space-between;margin-top:6px;font-size:12px;color:var(--muted);font-weight:700}
-.rdm{font-family:'Press Start 2P',monospace;font-size:7px}
+/* hero stats */
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.hs {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.hs-n { font-size: 26px; font-weight: 900; color: var(--blue); }
+.hs-l { font-size: 11px; font-weight: 700; color: #4a6a8a; text-transform: uppercase; letter-spacing: .5px; margin-top: 3px; }
 
-/* GRASS DIV */
-.gdiv{height:28px;background:repeating-linear-gradient(90deg,var(--grass) 0,var(--grass) 14px,var(--grass2) 14px,var(--grass2) 28px);opacity:.28;border-radius:4px;margin:36px 0}
+/* ═══════════════════════════════════════
+   TG COMMUNITY BANNER
+═══════════════════════════════════════ */
+.tg-strip {
+  background: linear-gradient(90deg, #0a1e35 0%, #0d2a45 50%, #0a1e35 100%);
+  border-bottom: 1px solid #1a3050;
+}
+.tg-strip-in {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.tg-strip-icon {
+  width: 46px; height: 46px;
+  background: var(--tg);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.tg-strip-text strong { font-size: 15px; font-weight: 800; color: #fff; display: block; margin-bottom: 3px; }
+.tg-strip-text span { font-size: 13px; color: #5a8ab0; }
+.tg-strip-features {
+  display: flex;
+  gap: 20px;
+  margin-left: 20px;
+  flex-wrap: wrap;
+}
+.tgf {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #7aaccc;
+}
+.tg-strip-btn {
+  margin-left: auto;
+  background: var(--tg);
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background .15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.tg-strip-btn:hover { background: var(--tg-h); }
 
-/* SIDEBAR LAYOUT */
-.w-sb{display:grid;grid-template-columns:1fr 308px;gap:32px;align-items:start}
+/* ═══════════════════════════════════════
+   MAIN LAYOUT
+═══════════════════════════════════════ */
+.wrap {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 28px 20px;
+  display: grid;
+  grid-template-columns: 1fr 296px;
+  gap: 24px;
+  align-items: start;
+}
 
-/* SIDEBAR */
-.sw{background:var(--card);border:2px solid var(--border);border-radius:14px;padding:20px;margin-bottom:14px}
-.sw-t{font-family:'Press Start 2P',monospace;font-size:9px;color:var(--text2);margin-bottom:14px}
-.ti{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:color .15s}
-.ti:last-child{border-bottom:none}
-.ti:hover .ti-t{color:var(--grass)}
-.ti-img{width:50px;height:48px;border-radius:8px;object-fit:cover;flex-shrink:0;border:2px solid var(--border)}
-.ti-n{font-family:'Press Start 2P',monospace;font-size:16px;color:var(--border);flex-shrink:0}
-.ti-t{font-size:13px;font-weight:700;color:var(--text);line-height:1.3}
-.vbox{background:var(--bg3);border:2px solid var(--diamond);border-radius:10px;padding:14px;margin-bottom:12px}
-.vl{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--diamond);margin-bottom:6px}
-.vn{font-family:'Press Start 2P',monospace;font-size:18px;color:var(--text)}
-.vs{font-size:12px;color:var(--muted);margin-top:4px;font-weight:700}
-.qt{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;color:var(--text2);font-weight:600;line-height:1.45}
-.qt:last-child{border-bottom:none}
-.qt-ico{font-size:18px;flex-shrink:0}
+/* section head */
+.sh {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.sh h2 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.sh h2::before {
+  content: '';
+  width: 3px; height: 18px;
+  background: var(--blue);
+  border-radius: 2px;
+}
+.sh-link { font-size: 12px; font-weight: 700; color: var(--blue); }
+.sh-link:hover { text-decoration: underline; }
 
-/* ALL ARTICLES */
-.ftabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
-.ftab{padding:7px 13px;border-radius:20px;font-family:'Press Start 2P',monospace;font-size:7px;border:2px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all .15s}
-.ftab.active,.ftab:hover{background:var(--grass);border-color:var(--grass2);color:#000}
-.al{display:flex;align-items:center;gap:14px;padding:12px;border-radius:10px;cursor:pointer;transition:background .15s;border:2px solid transparent}
-.al:hover{background:var(--bg3);border-color:var(--border)}
-.al-ph{width:60px;height:46px;border-radius:8px;background:var(--bg3);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;border:2px solid va
-[23.04.2026 0:55] 🤫: r(--border)}
-.al-info{flex:1}
-.al-t{font-size:14px;font-weight:800;color:var(--text);margin-bottom:3px}
-.al-d{font-size:12px;color:var(--muted)}
-.al-tag{font-family:'Press Start 2P',monospace;font-size:7px;padding:4px 7px;border-radius:4px;white-space:nowrap;flex-shrink:0}
+section { margin-bottom: 36px; }
 
-/* MODAL */
-.modal-bg{display:none;position:fixed;inset:0;z-index:9000;background:rgba(5,12,5,.9);backdrop-filter:blur(8px);overflow-y:auto;padding:32px 16px;align-items:flex-start;justify-content:center}
-.modal-bg.open{display:flex}
-.modal-box{background:var(--bg2);border:2px solid var(--border);border-radius:18px;max-width:780px;width:100%;overflow:hidden;animation:popIn .3s cubic-bezier(.34,1.56,.64,1);position:relative}
-@keyframes popIn{from{transform:scale(.9) translateY(20px);opacity:0}to{transform:scale(1) translateY(0);opacity:1}}
-.m-hero{width:100%;height:230px;object-fit:cover;display:block}
-.m-close{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.75);border:2px solid rgba(255,255,255,.2);border-radius:8px;color:var(--text);font-family:'Press Start 2P',monospace;font-size:9px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s}
-.m-close:hover{border-color:var(--red);color:var(--red)}
-.m-body{padding:30px}
-.m-tag{font-family:'Press Start 2P',monospace;font-size:8px;padding:5px 10px;border-radius:4px;background:rgba(90,170,43,.15);color:var(--grass);display:inline-block;margin-bottom:14px}
-.m-body h2{font-size:24px;font-weight:900;color:var(--text);line-height:1.2;margin-bottom:6px}
-.m-intro{border-left:4px solid var(--grass);padding:12px 16px;background:rgba(90,170,43,.07);border-radius:0 8px 8px 0;color:var(--text2);font-size:14px;margin:20px 0;line-height:1.6}
-.m-body h3{font-family:'Press Start 2P',monospace;font-size:9px;color:var(--grass);margin:28px 0 14px;display:flex;align-items:center;gap:8px}
-.step{background:var(--bg3);border:2px solid var(--border);border-left:4px solid var(--grass);border-radius:10px;padding:16px 20px;margin:10px 0}
-.step-n{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--grass);margin-bottom:8px}
-.step p{color:var(--text2);font-size:14px;line-height:1.65}
-.tip-b{background:rgba(245,197,24,.07);border:2px solid rgba(245,197,24,.2);border-radius:10px;padding:12px 16px;margin:8px 0;color:var(--text2);font-size:14px;display:flex;gap:10px}
-.err-b{background:rgba(232,64,64,.07);border:2px solid rgba(232,64,64,.2);border-radius:10px;padding:12px 16px;margin:8px 0;color:var(--text2);font-size:14px;display:flex;gap:10px}
-.m-div{height:2px;background:var(--border);margin:24px 0;border-radius:2px}
+/* filter tabs */
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+.tab {
+  padding: 5px 13px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .15s;
+}
+.tab.on, .tab:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
 
-/* FOOTER */
-footer{background:var(--card);border-top:3px solid var(--border);margin-top:60px;padding:52px 24px 36px}
-.ft-in{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px}
-.ft-logo{font-family:'Press Start 2P',monospace;font-size:15px;color:var(--text);text-decoration:none;display:block;margin-bottom:14px}
-.ft-logo .gr{color:var(--grass)}
-.ft-desc{font-size:13px;color:var(--muted);line-height:1.6;font-weight:600}
-.ft-col h4{font-family:'Press Start 2P',monospace;font-size:8px;color:var(--text2);margin-bottom:14px}
-.ft-col a{display:block;color:var(--muted);text-decoration:none;font-size:13px;font-weight:700;margin-bottom:9px;transition:color .15s}
-.ft-col a:hover{color:var(--grass)}
-.ft-bot{max-width:1300px;margin:28px auto 0;padding-top:22px;border-top:2px solid var(--border);display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:700}
+/* ═══════════════════════════════════════
+   DOWNLOAD BLOCK
+═══════════════════════════════════════ */
+.dl-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 36px;
+}
+.dl-block-head {
+  background: linear-gradient(90deg, #0e1e0e, #142814);
+  padding: 20px 22px;
+  display: flex;
+  align-it
+[23.04.2026 23:54] 🤫: ems: center;
+  gap: 14px;
+  border-bottom: 1px solid #1a2a1a;
+}
+.dl-block-head-ico { font-size: 36px; }
+.dl-block-head-text strong { font-size: 18px; font-weight: 900; color: #fff; display: block; }
+.dl-block-head-text span { font-size: 13px; color: #5a8a5a; }
+.dl-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.dl-card {
+  background: var(--surface);
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  transition: background .15s;
+}
+.dl-card:hover { background: var(--surface2); }
+.dl-card-ico { font-size: 32px; }
+.dl-card-name { font-size: 15px; font-weight: 800; color: #fff; }
+.dl-card-ver { font-size: 12px; color: var(--muted); }
+.dl-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  transition: all .15s;
+  margin-top: 4px;
+}
+.dl-btn-android { background: #166534; color: #4ade80; border: 1px solid #15803d; }
+.dl-btn-android:hover { background: #14532d; }
+.dl-btn-ios { background: #1e3a5f; color: #60a5fa; border: 1px solid #1e40af; }
+.dl-btn-ios:hover { background: #1e3a6f; }
+.dl-btn-win { background: #1e2a3f; color: #93c5fd; border: 1px solid #1e3a5f; }
+.dl-btn-win:hover { background: #1e2a4f; }
+.dl-notice {
+  padding: 12px 20px;
+  background: #0d0d0d;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.dl-notice a { color: var(--blue); }
+.dl-notice a:hover { text-decoration: underline; }
 
-/* REVEAL */
-.rv{opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s ease}
-.rv.show{opacity:1;transform:translateY(0)}
+/* ═══════════════════════════════════════
+   ADDON CARDS
+═══════════════════════════════════════ */
+.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 
-@media(max-width:960px){.w-sb{grid-template-columns:1fr}.feat-grid{grid-template-columns:1fr}.feat-main{min-height:260px}nav{display:none}.ft-in{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.cat-grid{grid-template-columns:repeat(2,1fr)}.arts-grid{grid-template-columns:1fr}.ft-in{grid-template-columns:1fr}.hero h1{font-size:18px}.m-body{padding:20px}.tips-row{flex-directio
-[23.04.2026 0:55] 🤫: n:column}}
+.acard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+  display: flex;
+  flex-direction: column;
+}
+.acard:hover {
+  border-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,.4);
+}
+.acard-img {
+  width: 100%;
+  height: 148px;
+  object-fit: cover;
+  background: #111;
+}
+.acard-img-ph {
+  width: 100%;
+  height: 148px;
+  background: linear-gradient(135deg, #161616 0%, #0e0e0e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+}
+.acard-body { padding: 13px; flex: 1; display: flex; flex-direction: column; gap: 7px; }
+.acard-tags { display: flex; gap: 5px; flex-wrap: wrap; }
+.tag {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 3px;
+  letter-spacing: .2px;
+}
+.tag-hot { background: rgba(220,38,38,.15); color: #f87171; border: 1px solid rgba(220,38,38,.2); }
+.tag-new { background: rgba(37,99,235,.15); color: #60a5fa; border: 1px solid rgba(37,99,235,.2); }
+.tag-free { background: rgba(22,163,74,.15); color: #4ade80; border: 1px solid rgba(22,163,74,.2); }
+.tag-ver { background: rgba(100,100,100,.12); color: #888; border: 1px solid #2a2a2a; }
+.acard-title { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.acard-desc { font-size: 12px; color: #666; line-height: 1.5; flex: 1; }
+.acard-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+.acard-dl {
+  background: var(--blue);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 13px;
+  border-radius: 4px;
+  transition: background .15s;
+}
+.acard-dl:hover { background: var(--blue-h); }
+.acard-views { font-size: 11px; color: var(--muted); }
+
+/* featured wide card */
+.feat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s;
+  margin-bottom: 12px;
+}
+.feat:hover { border-color: #333; box-shadow: 0 4px 20px rgba(0,0,0,.35); }
+.feat-img {
+  width
+[23.04.2026 23:54] 🤫: : 260px;
+  height: 170px;
+  object-fit: cover;
+  background: #111;
+}
+.feat-img-ph {
+  width: 260px;
+  height: 170px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56px;
+}
+.feat-body { padding: 18px; display: flex; flex-direction: column; gap: 9px; }
+.feat-title { font-size: 18px; font-weight: 800; color: var(--text); line-height: 1.25; }
+.feat-desc { font-size: 13px; color: #666; line-height: 1.55; flex: 1; }
+.feat-dl {
+  background: var(--blue);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 5px;
+  width: fit-content;
+  transition: background .15s;
+}
+.feat-dl:hover { background: var(--blue-h); }
+
+/* ═══════════════════════════════════════
+   GUIDE LIST
+═══════════════════════════════════════ */
+.glist { display: flex; flex-direction: column; gap: 2px; }
+.gi {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 11px 13px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background .15s;
+  border: 1px solid transparent;
+}
+.gi:hover { background: var(--surface); border-color: var(--border); }
+.gi-ico {
+  width: 42px; height: 42px;
+  border-radius: 7px;
+  background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+.gi-info { flex: 1; }
+.gi-title { font-size: 13px; font-weight: 700; color: #ccc; margin-bottom: 3px; line-height: 1.3; }
+.gi-meta { font-size: 11px; color: var(--muted); }
+.gi-cat {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: rgba(37,99,235,.12);
+  color: #60a5fa;
+  border: 1px solid rgba(37,99,235,.2);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════
+   SIDEBAR
+═══════════════════════════════════════ */
+.sw {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.sw-h {
+  padding: 12px 15px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sw-h::before {
+  content: '';
+  width: 3px; height: 14px;
+  background: var(--blue);
+  border-radius: 2px;
+}
+.sw-b { padding: 13px 15px; }
+
+/* TG sidebar */
+.sw-tg { border-color: #1a3050; background: #0d1a28; }
+.sw-tg .sw-h { border-color: #1a3050; background: rgba(0,136,204,.08); }
+.tg-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 14px; }
+.tgst { text-align: center; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); border-radius: 7px; padding: 10px 5px; }
+.tgst-n { font-size: 17px; font-weight: 900; color: var(--tg); }
+.tgst-l { font-size: 10px; font-weight: 700; color: #3a6a8a; text-transform: uppercase; margin-top: 2px; }
+.tg-feats-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+.tgfl { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #7aacc8; font-weight: 600; }
+.tgfl span { font-size: 16px; }
+.tg-join {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: var(--tg);
+  color: #fff;
+  padding: 11px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 700;
+  transition: background .15s;
+}
+.tg-join:hover { background: var(--tg-h); }
+
+/* top list */
+.top-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: opacity .15s;
+}
+.top-item:last-child { border-bottom: none; }
+.top-item:hover { opacity: .75; }
+.top-n { font-size: 18px; font-weight: 900; color: var(--border2); width: 22px; flex-shrink: 0; }
+.top-img { width: 44px; height: 44px; border-radius: 6px; object-fit: cover; flex-shrink: 0; background: #111; border: 1px solid var(--border); }
+.top-img-ph { width: 44px; height: 44px; border-radius: 6px; background: var(--surface2); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shri
+[23.04.2026 23:54] 🤫: nk: 0; border: 1px solid var(--border); }
+.top-title { font-size: 12px; font-weight: 700; color: #ccc; line-height: 1.3; }
+.top-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+/* tips */
+.tip-box {
+  background: #111;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #777;
+  line-height: 1.5;
+}
+.tip-box:last-child { margin-bottom: 0; }
+.tip-box b { color: #ccc; }
+
+/* ═══════════════════════════════════════
+   MODAL
+═══════════════════════════════════════ */
+.modal-bg {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,.88);
+  backdrop-filter: blur(4px);
+  padding: 32px 16px;
+  overflow-y: auto;
+  align-items: flex-start;
+  justify-content: center;
+}
+.modal-bg.open { display: flex; }
+.mbox {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: 10px;
+  max-width: 720px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  animation: up .22s ease;
+}
+@keyframes up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.m-close {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: #222;
+  border: 1px solid var(--border2);
+  border-radius: 5px;
+  color: #888;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all .15s;
+  z-index: 2;
+}
+.m-close:hover { color: #fff; border-color: #444; }
+.m-img { width: 100%; height: 210px; object-fit: cover; background: #111; display: block; }
+.m-body { padding: 24px; }
+.m-tags { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
+.m-title { font-size: 22px; font-weight: 900; color: var(--text); margin-bottom: 6px; line-height: 1.2; }
+.m-intro {
+  font-size: 13px;
+  color: #666;
+  background: #111;
+  border-left: 3px solid var(--blue);
+  padding: 11px 14px;
+  border-radius: 0 6px 6px 0;
+  margin: 16px 0;
+  line-height: 1.65;
+}
+.m-h3 { font-size: 11px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: .7px; margin: 22px 0 10px; }
+.m-step {
+  background: #111;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--blue);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 15px;
+  margin: 8px 0;
+}
+.m-step-n { font-size: 10px; font-weight: 800; color: var(--blue); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+.m-step p { font-size: 13px; color: #777; line-height: 1.65; }
+.m-tip { background: rgba(234,179,8,.05); border: 1px solid rgba(234,179,8,.15); border-radius: 6px; padding: 9px 13px; margin: 6px 0; font-size: 13px; color: #888; display: flex; gap: 7px; }
+.m-err { background: rgba(220,38,38,.05); border: 1px solid rgba(220,38,38,.15); border-radius: 6px; padding: 9px 13px; margin: 6px 0; font-size: 13px; color: #888; display: flex; gap: 7px; }
+.m-div { height: 1px; background: var(--border); margin: 18px 0; }
+.m-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue);
+  color: #fff;
+  padding: 11px 22px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 16px;
+  transition: background .15s;
+  cursor: pointer;
+}
+.m-dl-btn:hover { background: var(--blue-h); }
+
+/* ═══════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════ */
+footer {
+  background: #0e0e0e;
+  border-top: 1px solid var(--border);
+  padding: 44px 20px 24px;
+  margin-top: 40px;
+}
+.ft-in {
+  max-width: 1220px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, 1fr);
+  gap: 44px;
+  margin-bottom: 32px;
+}
+.ft-logo { font-size: 20px; font-weight: 900; color: #fff; display: block; margin-bottom: 12px; }
+.ft-logo .blue { color: var(--blue); }
+.ft-desc { font-size: 13px; color: var(--muted); line-height: 1.65; max-width: 230px; margin-bottom: 14px; }
+.ft-tg {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--tg);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  tr
+[23.04.2026 23:54] 🤫: ansition: background .15s;
+}
+.ft-tg:hover { background: var(--tg-h); }
+.ft-col h4 { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 13px; }
+.ft-col a { display: block; font-size: 13px; color: #555; margin-bottom: 9px; transition: color .15s; }
+.ft-col a:hover { color: var(--blue); }
+.ft-bot {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #444;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ft-bot a { color: #555; transition: color .15s; }
+.ft-bot a:hover { color: var(--blue); }
+
+/* ═══════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .wrap { grid-template-columns: 1fr; }
+  .hero-in { grid-template-columns: 1fr; }
+  .hero-stats { display: none; }
+  .tg-strip-features { display: none; }
+  .ft-in { grid-template-columns: 1fr 1fr; }
+  nav { display: none; }
+}
+@media (max-width: 640px) {
+  .hero h1 { font-size: 26px; }
+  .hero-btns { flex-direction: column; }
+  .grid2, .grid3 { grid-template-columns: 1fr; }
+  .feat { grid-template-columns: 1fr; }
+  .feat-img, .feat-img-ph { width: 100%; height: 160px; }
+  .dl-cards { grid-template-columns: 1fr; }
+  .ft-in { grid-template-columns: 1fr; }
+  .m-body { padding: 16px; }
+  .hdr-right .search { display: none; }
+}
 </style>
 </head>
 <body>
 
+<!-- ANNOUNCE -->
+<div class="announce">
+  📣 Telegram-сообщество MCPEHUB — серверы без лагов, аддоны, мероприятия
+  <a href="https://t.me/mcpehubs" target="_blank">Вступить →</a>
+</div>
+
+<!-- HEADER -->
 <header>
   <div class="hdr">
-    <a class="logo" href="#">
-      <div class="logo-block">
-        <span class="g"></span><span class="g"></span><span class="g"></span><span class="g"></span>
-        <span class="g"></span><span class="d"></span><span class="g"></span><span class="g"></span>
-        <span class="d"></span><span class="d"></span><span class="d"></span><span class="d"></span>
-        <span class="d"></span><span class="s"></span><span class="d"></span><span class="d"></span>
-      </div>
-      <span><span class="gr">Грунт</span><span class="gl">Вики</span></span>
-    </a>
+    <a class="logo" href="#"><span class="blue">MCPE</span>HUB</a>
     <nav>
-      <a href="#cat">📦 Разделы</a>
-      <a href="#surv">⚔️ Выживание</a>
-      <a href="#mods">🧩 Моды</a>
-      <a href="#sec">💎 Секреты</a>
-      <a href="#bugs">🐛 Ошибки</a>
-      <a href="#all">📋 Все статьи</a>
+      <a href="#download">Скачать MCPE</a>
+      <a href="#addons">Аддоны</a>
+      <a href="#mods">Моды</a>
+      <a href="#maps">Карты</a>
+      <a href="#shaders">Шейдеры</a>
+      <a href="#guides">Гайды</a>
+      <a href="#community">Сообщество</a>
     </nav>
-    <div class="srch">
-      <span>🔍</span>
-      <input type="text" placeholder="Найти гайд...">
+    <div class="hdr-right">
+      <div class="search">
+        <svg width="13" height="13" fill="none" viewBox="0 0 20 20"><circle cx="9" cy="9" r="7" stroke="#555" stroke-width="2"/><path d="M15 15l3 3" stroke="#555" stroke-width="2" stroke-linecap="round"/></svg>
+        <input placeholder="Аддоны, карты, скины...">
+      </div>
+      <a class="btn-tg" href="https://t.me/mcpehubs" target="_blank">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.7 8c-.12.56-.46.7-.92.43l-2.52-1.86-1.22 1.17c-.14.13-.25.24-.5.24l.18-2.6 4.7-4.24c.2-.18-.05-.28-.32-.1L7.42 14.6 5 13.86c-.54-.17-.55-.54.12-.79l8.92-3.44c.45-.17.84.11.7.77z"/></svg>
+        Telegram
+      </a>
     </div>
   </div>
 </header>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-ov"></div>
-  <div class="hero-ov2"></div>
-  <div class="stars" id="stars"></div>
-  <div class="hero-cnt">
-    <div class="eyebrow">⛏ MINECRAFT PE &amp; BEDROCK · ВЕРСИЯ 1.21</div>
-    <h1>Твой главный<br><span class="hl">гайд-хаб</span><br>по <span class="hl2">Minecraft</span></h1>
-    <p class="hero-sub">Гайды, моды, секреты, постройки и решения ошибок — всё в одном месте. Актуально для 1.20 и 1.21.</p>
-    <div class="btns">
-      <div class="btn1" onclick="document.getElementById('cat').scrollIntoView({behavior:'smooth'})">⛏ Начать читать</div>
-      <div class="btn2" onclick="openA('firstnight')">🌱 Гайд для новичка →</div>
-      <div class="btn2" onclick="window.open('https://t.me/guide_mc','_blank')">
-  💬 Telegram
-  </div>
+  <div class="hero-in">
+    <div>
+      <h1>MCPEHUB —<br><span>Minecraft PE</span> Hub</h1>
+      <p>Аддоны, моды, карты, шейдеры, гайды и скачать Minecraft PE — всё в одном месте. Актуально для версий 1.20–1.21.</p>
+      <div class="hero-btns">
+        <a class="hbtn hbtn-primary" href="#download">⬇ Скачать Minecraft PE</a>
+        <a class="hbtn hbtn-tg" href="https://t.me/mcpehubs" target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.7 8c-.12.56-.46.7-.92.43l-2.52-1.86-1.22 1.17c-.14.13-.25.24-.5.24l.18-2.6 4.7-4.24c.2-.18-.05-.28-.32-.1L7.42 14.6 5 13.86c-.54-.17-.55-.54.12-.79l8.92-3.44c.45-.17.84.11.7.77z"/></svg>
+          Telegram-сообщество
+        </a>
+        <a class="hbtn hbtn-outline" href="#addons">Топ аддоны →</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-n">500+</div><div class="hs-l">Аддонов</div></div>
+      <div class="hs"><div class="hs-n">1.21</div><div class="hs-l">Версия MCPE</div></div>
+      <div class="hs"><div class="hs-n">10K+</div><div class="hs-l">Игроков</div></div>
+      <div class="hs">
+[23.04.2026 23:54] 🤫: <div class="hs-n">24/7</div><div class="hs-l">Серверы</div></div>
     </div>
   </div>
 </div>
 
-<div class="stats rv">
-  <div class="stat"><span class="stat-icon">📄</span><div><div class="stat-n">47</div><div class="stat-l">Статей</div></div></div>
-  <div class="stat"><span class="stat-icon">📂</span><div><div class="stat-n">6</div><div class="stat-l">Разделов</div></div></div>
-  <div class="stat"><span class="stat-icon">⛏</span><div><div class="stat-n">1.21</div><div class="stat-l">Актуальная версия</div></div></div>
-  <div class="stat"><span class="stat-icon">🔄</span><div><div class="stat-n">Апр 2025</div><div class="stat-l">Обновлено</div></div></div>
+<!-- TG STRIP -->
+<div class="tg-strip" id="community">
+  <div class="tg-strip-in">
+    <div class="tg-strip-icon">📣</div>
+    <div class="tg-strip-text">
+      <strong>Сообщество MCPEHUB в Telegram</strong>
+      <span>Вступи и получи доступ к серверам, аддонам и мероприятиям</span>
+    </div>
+    <div class="tg-strip-features">
+      <div class="tgf">🟢 Серверы без лагов</div>
+      <div class="tgf">👥 Найти друзей</div>
+      <div class="tgf">🎉 Мероприятия</div>
+      <div class="tgf">📦 Эксклюзивные аддоны</div>
+    </div>
+    <a class="tg-strip-btn" href="https://t.me/mcpehubs" target="_blank">Вступить в группу →</a>
+  </div>
 </div>
 
-<div class="page">
+<!-- MAIN -->
+<div class="wrap">
+<div><!-- LEFT COL -->
 
-  <!-- CATEGORIES -->
-  <section id="cat">
-    <div class="stitle">📦 Разделы</div>
-    <div class="cat-grid">
-      <a class="cat-card rv" href="#surv" style="--cc:#5aaa2b"><span class="cat-emoji">⚔️</span><div class="cat-name">Выживание</div><div class="cat-count">12 статей</div><div class="cat-bar"></div></a>
-      <a class="cat-card rv" href="#mods" style="--cc:#bc8cff"><span class="cat-emoji">🧩</span><div class="cat-name">Моды и аддоны</div><div class="cat-count">9 статей</div><div class="cat-bar" style="background:#bc8cff"></div></a>
-      <a class="cat-card rv" href="#builds" style="--cc:#f5c518"><span class="cat-emoji">🏗️</span><div class="cat-name">Постройки</div><div class="cat-count">8 статей</div><div class="cat-bar" style="background:#f5c518"></div></a>
-      <a class="cat-card rv" href="#sec" style="--cc:#3de6e6"><span class="cat-emoji">💎</span><div class="cat-name">Секреты и фишки</div><div class="cat-count">7 статей</div><div class="cat-bar" style="background:#3de6e6"></div></a>
-      <a class="cat-card rv" href="#bugs" style="--cc:#e84040"><span class="cat-emoji">🐛</span><div class="cat-name">Ошибки и баги</div><div class="cat-count">6 статей</div><div class="cat-bar" style="background:#e84040"></div></a>
-      <a class="cat-card rv" href="#newbie" style="--cc:#3fb950"><span class="cat-emoji">🌱</span><div class="cat-name">Для новичков</div><div class="cat-count">5 статей</div><div class="cat-bar" style="background:#3fb950"></div></a>
+  <!-- ── СКАЧАТЬ MINECRAFT ── -->
+  <section id="download">
+    <div class="sh">
+      <h2>⬇ Скачать Minecraft PE</h2>
+    </div>
+    <div class="dl-block">
+      <div class="dl-block-head">
+        <div class="dl-block-head-ico">📦</div>
+        <div class="dl-block-head-text">
+          <strong>Minecraft PE / Bedrock Edition</strong>
+          <span>Актуальная версия: 1.21.132 · Обновлено январь 2025</span>
+        </div>
+      </div>
+      <div class="dl-cards">
+        <div class="dl-card">
+          <div class="dl-card-ico">🤖</div>
+          <div class="dl-card-name">Android</div>
+          <div class="dl-card-ver">APK · ~700 МБ · Android 8.0+</div>
+          <a class="dl-card-btn dl-btn-android" href="https://mcpehub.org/download-mcpe/" target="_blank">⬇ Скачать APK</a>
+        </div>
+        <div class="dl-card">
+          <div class="dl-card-ico">🍎</div>
+          <div class="dl-card-name">iOS / iPhone</div>
+          <div class="dl-card-ver">App Store · iOS 13+</div>
+          <a class="dl-card-btn dl-btn-ios" href="https://apps.apple.com/app/minecraft/id479516143" target="_blank">🍎 App Store</a>
+        </div>
+        <div class="dl-card">
+          <div class="dl-card-ico">🪟</div>
+          <div class="dl-card-name">Windows PC</div>
+          <div class="dl-card-ver">Bedrock · официальный сайт</div>
+          <a class="dl-card-btn dl-btn-win" href="https://www.minecraft.net/ru-ru/download" target="_blank">🪟 minecraft.net</a>
+        </div>
+      </div>
+      <div class="dl-notice">
+        ⚠️ Minecraft — платная игра. Рекомендуем официальную покупку:
+        <a href="https://play.google.com/store/apps/details?id=com.mojang.minecraftpe" target="_blank">Google Play</a> ·
+        <a href="https://apps.apple.com/app/minecraft/id479516143" target="_blank">App Store</a> ·
+        <a href="https://minecraft.net" target="_blank">minecraft.net</a>
+      </div>
     </div>
   </section>
 
-  <!-- FEATURED -->
-  <section>
-    <div class="stitle">🔥 Главные статьи</div>
-    <div class="feat-grid rv">
-      <div class="feat-card feat-main" onclick="openA('diamonds')">
-        <img src="https://i.ytimg.com/vi/IHzDTibLqsg/maxresdefault.jp
-[23.04.2026 0:55] 🤫: g" alt="Алмазы">
-        <div class="feat-ov">
-          <div class="feat-cat">⭐ ТОП СТАТЬЯ · ВЫЖИВАНИЕ</div>
-          <div class="feat-title">Как найти алмазы в Minecraft 1.20–1.21</div>
-          <div class="feat-desc">Правильный уровень Y, branch mining, Fortune III. Реальные цифры по концентрации.</div>
-          <div class="feat-arrow">Читать гайд →</div>
+  <!-- ── ТОП АДДОНЫ ── -->
+  <section id="addons">
+    <div class="sh">
+      <h2>🔥 Популярные аддоны</h2>
+      <a class="sh-link" href="https://mcpedl.com/category/addons/" target="_blank">Все аддоны →</a>
+    </div>
+    <div class="tabs" id="addonTabs">
+      <div class="tab on" onclick="filterAddons('all',this)">Все</div>
+      <div class="tab" onclick="filterAddons('furniture',this)">Мебель</div>
+      <div class="tab" onclick="filterAddons('mobs',this)">Мобы</div>
+      <div class="tab" onclick="filterAddons('weapons',this)">Оружие</div>
+      <div class="tab" onclick="filterAddons('vehicles',this)">Транспорт</div>
+      <div class="tab" onclick="filterAddons('survival',this)">Выживание</div>
+      <div class="tab" onclick="filterAddons('decoration',this)">Декор</div>
+    </div>
+
+    <!-- FEATURED -->
+    <div class="feat" onclick="openA('furniture')">
+      <img class="feat-img" src="https://i.ytimg.com/vi/b0IAQheE0-Q/maxresdefault.jpg" alt="Furniture" onerror="this.outerHTML='<div class=feat-img-ph>🛋️</div>'">
+      <div class="feat-body">
+        <div class="acard-tags">
+          <span class="tag tag-hot">🔥 ТОП</span>
+          <span class="tag tag-new">ОБНОВЛЁН</span>
+          <span class="tag tag-free">БЕСПЛАТНО</span>
+          <span class="tag tag-ver">1.21+</span>
+        </div>
+        <div class="feat-title">BONY162 Furniture
+[23.04.2026 23:54] 🤫: — 200+ предметов мебели</div>
+        <div class="feat-desc">Самый популярный аддон на мебель. Диваны, кровати, лампы, кухня, ванная, столы. Работает в выживании. Совместим с другими аддонами. Обновлён декабрь 2024.</div>
+        <a class="feat-dl" href="https://mcpedl.com/bony162-furniture-addon-1-2/" target="_blank">⬇ Скачать на MCPEDL</a>
+      </div>
+    </div>
+
+    <div class="grid2" id="addonGrid"></div>
+  </section>
+
+  <!-- ── МОДЫ ── -->
+  <section id="mods">
+    <div class="sh">
+      <h2>🧩 Моды</h2>
+      <a class="sh-link" href="https://mcpedl.com/addons/" target="_blank">Все моды →</a>
+    </div>
+    <div class="grid2">
+      <div class="acard" onclick="openA('guns')">
+        <img class="acard-img" src="https://i.ytimg.com/vi/3sXMiHinuV4/maxresdefault.jpg" alt="Guns" onerror="this.outerHTML='<div class=acard-img-ph>🔫</div>'">
+        <div class="acard-body">
+          <div class="acard-tags"><span class="tag tag-hot">🔥 ХИТ</span><span class="tag tag-ver">1.20–1.21</span></div>
+          <div class="acard-title">Simple Warfare II — оружие и техника</div>
+          <div class="acard-desc">Автоматы, пистолеты, гранаты, техника. Реалистичные анимации и звуки. Для PvP и выживания.</div>
+          <div class="acard-foot"><a class="acard-dl" href="https://mcpedl.com/3d-simplified-gun-addon/" target="_blank">⬇ Скачать</a><span class="acard-views">👁 120K</span></div>
         </div>
       </div>
-      <div class="feat-card feat-sm" onclick="openA('firstnight')">
-        <img src="https://i.ytimg.com/vi/0pj4tF1rBSA/maxresdefault.jpg" alt="Первая ночь" onerror="this.src='https://i.ytimg.com/vi/f4WUTzU4y0g/maxresdefault.jpg'">
-        <div class="feat-ov">
-          <div class="feat-cat">🌱 ДЛЯ НОВИЧКОВ</div>
-          <div class="feat-title">Как выжить первую ночь без потерь</div>
-          <div class="feat-arrow">Читать →</div>
+      <div class="acard">
+        <div class="acard-img-ph">🚗</div>
+        <div class="acard-body">
+          <div class="acard-tags"><span class="tag tag-hot">🔥 ХИТ</span><span class="tag tag-ver">1.21+</span></div>
+          <div class="acard-title">Vehicle Addon — машины и мотоциклы</div>
+          <div class="acard-desc">Джипы, спортивные авто, квадроциклы. Реалистичное управление. Топливо и прокачка.</div>
+          <div class="acard-foot"><a class="acard-dl" href="https://mcpedl.com/?s=vehicle+addon" target="_blank">⬇ Скачать</a><span class="acard-views">👁 67K</span></div>
         </div>
       </div>
-      <div class="feat-card feat-sm" onclick="openA('lag')">
-        <img src="https://i.ytimg.com/vi/P8g5KgJl0o8/maxresdefault.jpg" alt="Лаги" onerror="this.src='https://i.ytimg.com/vi/KUNhJUkY2_Y/maxresdefault.jpg'">
-        <div class="feat-ov">
-          <div class="feat-cat">🐛 ОШИБКИ</div>
-          <div class="feat-title">Почему лагает Minecraft PE и как исправить</div>
-          <div class="feat-arrow">Читать →</div>
+      <div class="acard">
+        <div class="acard-img-ph">⚒️</div>
+        <div class="acard-body">
+          <div class="acard-tags"><span class="tag tag-new">НОВОЕ</span><span class="tag tag-ver">1.21+</span></div>
+          <div class="acard-title">More Tools — инструменты выше незерита</div>
+          <div class="acard-desc">Кристальный, драконий, эндерный уровни. Новые рецепты крафта.</div>
+          <div class="acard-foot"><a class="acard-dl" href="https://mcpedl.com/?s=more+tools" target="_blank">⬇ Скачать</a><span class="acard-views">👁 22K</span></div>
+        </div>
+      </div>
+      <div class="acard">
+        <div class="acard-img-ph">🍕</div>
+        <div class="acard-body">
+          <div class="acard-tags"><span class="tag tag-free">БЕСПЛАТНО</span><span class="tag tag-ver">1.20+</span></div>
+          <div class="acard-title">More Food — 100+ новых блюд</div>
+          <div class="acard-desc">Пицца, суши, бургеры, напитки. Каждое блюдо даёт уникальные эффекты.</div>
+          <div class="acard-foot"><a class="acard-dl" href="https://mcpedl.com/?s=more+food" target="_blank">⬇ Скачать</a><span class="acard-views">👁 19K</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TIPS -->
-  <div class="tips-b rv">
-    <div class="tips-b-in">
-      <div class="tips-b-t">⚡ БЫСТРЫЕ СОВЕТЫ</div>
-      <div class="tips-row">
-        <div class="tip-pill"><div class="tip-pill-ico">🪣</div><div class="tip-pill-txt">Вылей воду перед приземлением — отменяет урон с любой высоты</div></div>
-        <div class="tip-pill"><div class="tip-pill-ico">🧲</div><div class="tip-pill-txt">Fortune III даёт до 4 алмазов с одной руды вместо одного</div></div>
-        <div class="tip-pill"><div class="tip-pill-ico">🌻</div><div class="tip-pill-txt">Подсолнух всегда смотрит на восток — бесплатный компас</div></div>
-        <div class="tip-pill"><div class="tip-pill-ico">🎃</div><div class="tip-pill-txt">Тыква на голове делает эндерменов нейтральными к тебе</div></div>
+  <!-- ── КАРТЫ ── -->
+  <section id="maps">
+    <div class="sh">
+      <h2>🗺️ Карты</h2>
+      <a class="sh-link" href="https://mcpedl.com/category/minecraft-pe-maps/" target="_blank">Все карты →</a>
+    </div>
+    <div class="grid2">
+      <div class="acard">
+        <img class="acard-img" src="https://i.ytimg.com/vi/Sz_yPb0AKNY/maxresdefault.jpg" alt="Sky Wars" onerror="this.outerHTML='<div class=acard-img-ph>🏝️</div>'">
+        <div class="acard-body">
+          <div class="acard-tags"><span class="tag tag-hot">🔥 ХИТ</span><span class="tag tag-ver">1.21+</span></div>
+          <div class="acard-title">Sky Wars — 8 игроков</div>
+          <div class="acard-desc">Острова, сундуки, PvP. Работает в ЛАН и реалм.</div>
+          <div class="acard-foot"><a class="acard-dl" href="https://mcpedl.com/?s=sky+wars" target="_
+[23.04.2026 23:54] 🤫: blank">⬇ Скачать</a><span class="acard-views">👁 89K</span></div>
+        </div>
+      </div>
+      <div class="acard">
+        <div class="acard-img-ph">🛏️</div>
+        <div class="acard-body">
+          <div class="acard-tags"><span class="tag tag-hot">🔥 ХИТ</span><span class="tag tag-ver">1.21+</span></div>
+          <div class="acard-title">Bed Wars — 4 команды</div>
+          <div class="acard-desc">Острова, ресурсы, защита кровати. Полный Bed Wars без сервера.</div>
+          <div class="acard-foot"><a class="acard-dl" href="https://mcpedl.com/?s=bed+wars" target="_blank">⬇ Скачать</a><span class="acard-views">👁 112K</span></div>
+        </div>
+      </div>
+      <div class="acard">
+        <img class="acard-img" src="https://i.ytimg.com/vi/HG_CxRCWZJU/maxresdefault.jpg" alt="Parkour" onerror="this.outerHTML='<div class=acard-img-ph>🏃</div>'">
+        <div class="acard-body">
+          <div class="acard-tags"><span class="tag tag-new">НОВОЕ</span><span class="tag tag-ver">1.20+</span></div>
+          <div class="acard-title">Mega Parkour — 100 уровней</div>
+          <div class="acard-desc">От новичка до невозможного. Чекпоинты, таймер, рекорды.</div>
+          <div class="acard-foot"><a class="acard-dl" href="https://mcpedl.com/?s=parkour" target="_blank">⬇ Скачать</a><span class="acard-views">👁 43K</span></div>
+        </div>
+      </div>
+      <div class="acard">
+        <div class="acard-img-ph">🏰</div>
+        <div class="acard-body">
+          <div class="acard-tags"><span class="tag tag-free">БЕСПЛАТНО</span><span class="tag tag-ver">1.20+</span></div>
+          <div class="acard-title">Survival Island — Выживание на острове</div>
+          <div class="acard-desc">Ограниченные ресурсы, задания, достижения. Классика жанра.</div>
+          <div class="acard-foot"><a class="acard-dl" href="https://mcpedl.com/?s=survival+island" target="_blank">⬇ Скачать</a><span class="acard-views">👁 31K</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ШЕЙДЕРЫ ── -->
+  <section id="shaders">
+    <div class="sh">
+      <h2>🎨 Шейдеры и текстуры</h2>
+      <a class="sh-link" href="https://mcpedl.com/category/minecraft-pe-texture-packs/" target="_blank">Все →</a>
+    </div>
+    <div class="grid2">
+      <div class="acard">
+        <img class="acard-img" src="https://i.ytimg.com/vi/5bEdX3tMdvo/maxresdefault.jpg" alt="Shader" onerror="this.outerHTML='<div class=acard-img-ph>🌅</div>'">
+        <div class="acard-body">
+          <div class="acard-tags"><span class="tag tag-hot">🔥 ХИТ</span><span class="tag tag-ver">1.20+</span></div>
+          <div class="acard-title">SEUS Shader — RTX-эффекты для PE</div>
+          <div class="acard-desc">Тени, отражения воды, объёмный свет. Android + iOS без RTX-видеокарты.</div>
+          <div class="acard-foot"><a class="acard-dl" href="https://mcpedl.com/?s=seus+shader" target="_blank">⬇ Скачать</a><span class="acard-views">👁 200K</span></div>
+        </div>
+      </div>
+      <div class="acard">
+        <div class="acard-img-ph">🎭</div>
+        <div class="acard-body">
+          <div class="acard-tags"><span class="tag tag-new">НОВОЕ</span><span class="tag tag-ver">1.21+</span></div>
+          <div class="acard-title">8K Texture Pack — реализм без RTX</div>
+          <div class="acard-desc">Текстуры 8K для блоков, мобов, предметов, UI. Максимальный реализм.</div>
+          <div class="acard-foot"><a class="acard-dl" href="https://mcpedl.com/?s=texture+pack+realistic" target="_blank">⬇ Скачать</a><span class="acard-views">👁 55K</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ГАЙДЫ ── -->
+  <section id="guides">
+    <div class="sh">
+      <h2>📖 Гайды</h2>
+    </div>
+    <div class="glist">
+      <div class="gi" onclick="openM('diamonds')">
+        <div class="gi-ico">💎</div>
+        <div class="gi-info">
+          <div class="gi-title">Как найти алмазы в Minecraft 1.20–1.21: правильный уровень и паттерн</div>
+          <div class="gi-meta">7 мин · 45K просмотров</div>
+        </div>
+        <div class="gi-cat">Выживание</div>
+[23.04.2026 23:54] 🤫: </div>
+      <div class="gi" onclick="openM('firstnight')">
+        <div class="gi-ico">🌑</div>
+        <div class="gi-info">
+          <div class="gi-title">Как выжить первую ночь в Minecraft PE: план за 10 минут</div>
+          <div class="gi-meta">4 мин · 38K просмотров</div>
+        </div>
+        <div class="gi-cat">Новичкам</div>
+      </div>
+      <div class="gi" onclick="openM('mods')">
+        <div class="gi-ico">🧩</div>
+        <div class="gi-info">
+          <div class="gi-title">Как установить аддоны и моды в Minecraft PE без ошибок</div>
+          <div class="gi-meta">5 мин · 62K просмотров</div>
+        </div>
+        <div class="gi-cat">Аддоны</div>
+      </div>
+      <div class="gi" onclick="openM('lag')">
+        <div class="gi-ico">🔧</div>
+        <div class="gi-info">
+          <div class="gi-title">Почему лагает Minecraft PE и как убрать лаги: 8 способов</div>
+          <div class="gi-meta">6 мин · 55K просмотров</div>
+        </div>
+        <div class="gi-cat">Ошибки</div>
+      </div>
+      <div class="gi" onclick="openM('secrets')">
+        <div class="gi-ico">🔮</div>
+        <div class="gi-info">
+          <div class="gi-title">15 скрытых фишек Minecraft PE, о которых никто не говорит</div>
+          <div class="gi-meta">6 мин · 29K просмотров</div>
+        </div>
+        <div class="gi-cat">Секреты</div>
+      </div>
+      <div class="gi">
+        <div class="gi-ico">🐉</div>
+        <div class="gi-info">
+          <div class="gi-title">Как убить Эндер-дракона без смертей: пошаговый гайд</div>
+          <div class="gi-meta">8 мин · 31K просмотров</div>
+        </div>
+        <div class="gi-cat">Выживание</div>
+      </div>
+      <div class="gi">
+        <div class="gi-ico">✨</div>
+        <div class="gi-info">
+          <div class="gi-title">Лучшие зачарования в Minecraft PE: полный список приоритетов</div>
+          <div class="gi-meta">6 мин · 27K просмотров</div>
+        </div>
+        <div class="gi-cat">Выживание</div>
+      </div>
+      <div class="gi">
+        <div class="gi-ico">🌱</div>
+        <div class="gi-info">
+          <div class="gi-title">Лучшие семена (сиды) для Minecraft PE 1.21 — деревня, алмазы, биомы</div>
+          <div class="gi-meta">4 мин · 19K просмотров</div>
+        </div>
+        <div class="gi-cat">Сиды</div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /LEFT COL -->
+
+<!-- SIDEBAR -->
+<aside>
+
+  <!-- TG Widget -->
+  <div class="sw sw-tg">
+    <div class="sw-h">📣 Telegram MCPEHUB</div>
+    <div class="sw-b">
+      <div class="tg-stats">
+        <div class="tgst"><div class="tgst-n">10K+</div><div class="tgst-l">Участников</div></div>
+        <div class="tgst"><div class="tgst-n">24/7</div><div class="tgst-l">Онлайн</div></div>
+        <div class="tgst"><div class="tgst-n">🟢</div><div class="tgst-l">Активен</div></div>
+      </div>
+      <div class="tg-feats-list">
+        <div class="tgfl"><span>🟢</span> Серверы без лагов — всегда работают</div>
+        <div class="tgfl"><span>👥</span> Найти друзей по Minecraft PE</div>
+        <div class="tgfl"><span>🎉</span> Мероприятия и турниры каждую неделю</div>
+        <div class="tgfl"><span>📦</span> Эксклюзивные аддоны и карты</div>
+        <div class="tgfl"><span>❓</span> Помощь с установкой и ошибками</div>
+        <div class="tgfl"><span>📢</span> Новости Minecraft первыми</div>
+      </div>
+      <a class="tg-join" href="https://t.me/mcpehubs" target="_blank">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.7 8c-.12.56-.46.7-.92.43l-2.52-1.86-1.22 1.17c-.14.13-.25.24-.5.24l.18-2.6 4.7-4.24c.2-.18-.05-.28-.32-.1L7.42 14.6 5 13.86c-.54-.17-.55-.54.12-.79l8.92-3.44c.45-.17.84.11.7.77z"/></svg>
+        Вступить — t.me/mcpehubs
+      </a>
+    </div>
+  </div>
+
+  <!-- TOP -->
+  <div class="sw">
+    <div class="sw-h">🏆 Топ аддонов</div>
+    <div class="sw-b">
+      <div class="top-item" onclick="openA('furniture')">
+        <div class="top-n">1</div>
+        <img class="top-img" src="https://i.y
+[23.04.2026 23:54] 🤫: timg.com/vi/b0IAQheE0-Q/hqdefault.jpg" alt="" onerror="this.outerHTML='<div class=top-img-ph>🛋️</div>'">
+        <div><div class="top-title">BONY162 Furniture</div><div class="top-sub">👁 180K · Мебель</div></div>
+      </div>
+      <div class="top-item" onclick="openA('guns')">
+        <div class="top-n">2</div>
+        <img class="top-img" src="https://i.ytimg.com/vi/3sXMiHinuV4/hqdefault.jpg" alt="" onerror="this.outerHTML='<div class=top-img-ph>🔫</div>'">
+        <div><div class="top-title">Simple Warfare II</div><div class="top-sub">👁 120K · Оружие</div></div>
+      </div>
+      <div class="top-item">
+        <div class="top-n">3</div>
+        <div class="top-img-ph">🛏️</div>
+        <div><div class="top-title">Bed Wars Map</div><div class="top-sub">👁 112K · Карты</div></div>
+      </div>
+      <div class="top-item">
+        <div class="top-n">4</div>
+        <img class="top-img" src="https://i.ytimg.com/vi/5bEdX3tMdvo/hqdefault.jpg" alt="" onerror="this.outerHTML='<div class=top-img-ph>🌅</div>'">
+        <div><div class="top-title">SEUS Shader</div><div class="top-sub">👁 200K · Шейдеры</div></div>
+      </div>
+      <div class="top-item">
+        <div class="top-n">5</div>
+        <div class="top-img-ph">🚗</div>
+        <div><div class="top-title">Vehicle Addon</div><div class="top-sub">👁 67K · Транспорт</div></div>
       </div>
     </div>
   </div>
 
-  <!-- SURVIVAL + SIDEBAR -->
-  <section id="surv" style="padding-top:48px">
-    <div class="stitle">⚔️ Выживание</div>
-    <div class="w-sb">
-      <div>
-        <div class="arts-grid">
-          <div class="art rv" onclick="openA('diamonds')" style="--ac:#5aaa2b">
-            <div class="art-iw"><img src="https://i.ytimg.com/vi/IHzDTibLqsg/maxresdefault.jpg" alt="Алмазы"></div>
-            <div class="art-body">
-              <div class="art-tag" style="background:rgba(90,170,43,.15);color:#5aaa2b">⚔️ Выживание</div>
-              <div class="art-title">Как найти алмазы в Minecraft 1.20–1.21</div>
-              <div class="art-desc">Y=-54, branch mining, Fortune III. Реальные цифры за час копки.</div>
-              <div class="art-foot"><span>⏱ 7 мин</span><span class="rdm" style="color:#5aaa2b">Читать →</span></div>
-            </div>
-          </div>
-          <div class="art rv" style="--ac:#5aaa2b">
-            <div class="art-iw"><img src="https://i.ytimg.com/vi/M3mFBkEFRjA/maxresdefault.jpg" alt="Эндер дракон" onerror="this.parentNode.innerHTML='<div class=art-ph>🐉</div>'"></div>
-            <div class="art-body">
-              <div class="art-tag" style="background:rgba(90,170,43,.15);color:#5aaa2b">⚔️ Выживание</div>
-              <div class="art-title">Как убить Эндер-дракона: пошаговый гайд</div>
-              <div class="art-desc">Кристаллы, паттерн атаки, минимальный сет снаряжения без потерь.</div>
-              <div class="art-foot"><span>⏱ 8 мин</span><span class="rdm" style="color:#5aaa2b">Читать →</span></div>
-            </div>
-          </div>
-          <div class="art rv" style="--ac:#5aaa2b">
-            <div class="art-iw"><img src="https://i.ytimg.com/vi/2OJlaqteFEc/maxresdefault.jpg" alt="Зачарования" onerror="this.parentNode.innerHTML='<div class=art-ph>✨</div>'"></div>
-            <div class="art-body">
-              <div class="art-tag" style="background:rgba(90,170,43,.15
-[23.04.2026 0:55] 🤫: );color:#5aaa2b">⚔️ Выживание</div>
-              <div class="art-title">Зачарования: что брать в первую очередь</div>
-              <div class="art-desc">Fortune, Mending, Unbreaking, Efficiency — приоритеты по типам инструментов.</div>
-              <div class="art-foot"><span>⏱ 6 мин</span><span class="rdm" style="color:#5aaa2b">Читать →</span></div>
-            </div>
-          </div>
-          <div class="art rv" style="--ac:#5aaa2b">
-            <div class="art-iw"><img src="https://i.ytimg.com/vi/l2MhWQC1mGo/maxresdefault.jpg" alt="Незер" onerror="this.parentNode.innerHTML='<div class=art-ph>🔥</div>'"></div>
-            <div class="art-body">
-              <div class="art-tag" style="background:rgba(90,170,43,.15);color:#5aaa2b">⚔️ Выживание</div>
-              <div class="art-title">Нижний мир: как безопасно исследовать Незер</div>
-              <div class="art-desc">Биомы, крепость, бастион — как не потеряться и что искать.</div>
-              <div class="art-foot"><span>⏱ 6 мин</span><span class="rdm" style="color:#5aaa2b">Читать →</span></div>
-            </div>
-          </div>
-          <div class="art rv" style="--ac:#5aaa2b">
-            <div class="art-ph">⭐</div>
-            <div class="art-body">
-              <div class="art-tag" style="background:rgba(90,170,43,.15);color:#5aaa2b">⚔️ Выживание</div>
-              <div class="art-title">Фарм опыта: лучшие методы без модов</div>
-              <div class="art-desc">Топ-5 ферм — зомби-ферма, ферма пауков, рыбалка. Сколько XP в час.</div>
-              <div class="art-foot"><span>⏱ 5 мин</span><span class="rdm" style="color:#5aaa2b">Читать →</span></div>
-            </div>
-          </div>
-          <div class="art rv" style="--ac:#5aaa2b">
-            <div class="art-ph">🪙</div>
-            <div class="art-body">
-              <div class="art-tag" style="background:rgba(90,170,43,.15);color:#5aaa2b">⚔️ Выживание</div>
-              <div class="art-title">Торговля с жителями: как получить максимум</div>
-              <div class="art-desc">Лучшие профессии, снижение цен, накопление изумрудов быстро.</div>
-              <div class="art-foot"><span>⏱ 5 мин</span><span class="rdm" style="color:#5aaa2b">Читать →</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="gdiv"></div>
-
-        <!-- MODS -->
-        <div id="mods">
-          <div class="stitle">🧩 Моды и аддоны</div>
-          <div class="arts-grid">
-            <div class="art rv" onclick="openA('mods')" style="--ac:#bc8cff">
-              <div class="art-iw"><img src="https://is3-ssl.mzstatic.com/image/thumb/Purple221/v4/39/aa/00/39aa0030-c7cb-6c4b-cdde-8de5af14db84/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/460x0w.webp" alt="Моды" onerror="this.parentNode.innerHTML='<div class=art-ph>🧩</div>'"></div>
-              <div class="art-body">
-                <div class="art-tag" style="background:rgba(188,140,255,.1);color:#bc8cff">🧩 Моды</div>
-                <div class="art-title">Как установить моды в Minecraft PE без ошибок</div>
-                <div class="art-desc">.mcaddon через файловый менеджер, решение 5 частых ошибок.</div>
-                <div class="art-foot"><span>⏱ 5 мин</span><span class="rdm" style="color:#bc8cff">Читать →</span></div>
-              </div>
-            </div>
-            <div class="art rv" style="--ac:#bc8cff">
-              <div class="art-ph">📦</div>
-              <div class="art-body">
-                <div class="art-tag" style="background:rgba(188,140,255,.1);color:#bc8cff">🧩 Моды</div>
-                <div class="art-title">Топ-10 модов для Minecraft PE 1.20–1.21</div>
-                <div class="art-desc">Лучшие аддоны 2024: обзор и где скачать каждый.</div>
-                <div class="art-foot"><span>⏱ 7 мин</span><span class="rdm" style="color:#bc8cff">Читать →</span></div>
-              </div>
-            </div>
-            <div class="art rv" style="--ac:#bc8cff">
-              <div class="art-ph">🎨</div>
-              <div class="art-body">
-                <div class="art-tag" style="background:rgba(188,140,255,.1);colo
-[23.04.2026 0:55] 🤫: r:#bc8cff">🧩 Моды</div>
-                <div class="art-title">Шейдеры для Minecraft PE: RTX и SEUS</div>
-                <div class="art-desc">Совместимые шейдеры Android/iOS. Рейтрейсинг без лагов.</div>
-                <div class="art-foot"><span>⏱ 6 мин</span><span class="rdm" style="color:#bc8cff">Читать →</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="gdiv"></div>
-
-        <!-- SECRETS -->
-        <div id="sec">
-          <div class="stitle">💎 Секреты и фишки</div>
-          <div class="arts-grid">
-            <div class="art rv" onclick="openA('secrets')" style="--ac:#3de6e6">
-              <div class="art-iw"><img src="https://i.ytimg.com/vi/IHzDTibLqsg/maxresdefault.jpg" alt="Секреты" onerror="this.parentNode.innerHTML='<div class=art-ph>💎</div>'"></div>
-              <div class="art-body">
-                <div class="art-tag" style="background:rgba(61,230,230,.1);color:#3de6e6">💎 Секреты</div>
-                <div class="art-title">15 скрытых фишек Minecraft PE</div>
-                <div class="art-desc">Вёдра, заряженный крипер, подсолнух-компас — и 12 ещё.</div>
-                <div class="art-foot"><span>⏱ 6 мин</span><span class="rdm" style="color:#3de6e6">Читать →</span></div>
-              </div>
-            </div>
-            <div class="art rv" style="--ac:#3de6e6">
-              <div class="art-ph">🗺️</div>
-              <div class="art-body">
-                <div class="art-tag" style="background:rgba(61,230,230,.1);color:#3de6e6">💎 Секреты</div>
-                <div class="art-title">Скрытые структуры: древние города и монументы</div>
-                <div class="art-desc">Команды поиска, биомы, что внутри и зачем идти.</div>
-                <div class="art-foot"><span>⏱ 5 мин</span><span class="rdm" style="color:#3de6e6">Читать →</span></div>
-              </div>
-            </div>
-            <div class="art rv" style="--ac:#3de6e6">
-              <div class="art-ph">🌱</div>
-              <div class="art-body">
-                <div class="art-tag" style="background:rgba(61,230,230,.1);color:#3de6e6">💎 Секреты</div>
-                <div class="art-title">Лучшие семена Minecraft PE 1.21</div>
-                <div class="art-desc">Топ-8 сидов: деревня на спауне, алмазы рядом, редкие биомы.</div>
-                <div class="art-foot"><span>⏱ 4 мин</span><span class="rdm" style="color:#3de6e6">Читать →</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="gdiv"></div>
-
-        <!-- BUGS -->
-        <div id="bugs">
-          <div class="stitle">🐛 Ошибки и решения</div>
-          <div class="arts-grid">
-            <div class="art rv" onclick="openA('lag')" style="--ac:#e84040">
-              <div class="art-ph" style="background:#1e0f0f">🔧</div>
-              <div class="art-body">
-                <div class="art-tag" style="background:rgba(232,64,64,.1);color:#e84040">🐛 Ошибки</div>
-                <div class="art-title">Почему лагает Minecraft PE и как исправить</div>
-                <div class="art-desc">Настройки, кэш, мир — 8 реальных способов убрать лаги.</div>
-                <div class="art-foot"><span>⏱ 6 мин</span><span class="rdm" style="color:#e84040">Читать →</span></div>
-              </div>
-            </div>
-            <div class="art rv" style="--ac:#e84040">
-              <div class="art-ph" style="background:#1e0f0f">💥</div>
-              <div class="art-body">
-                <div class="art-tag" style="background:rgba(232,64,64,.1);color:#e84040">🐛 Ошибки</div>
-                <div class="art-title">Minecraft PE вылетает при запуске: 7 решений</div>
-                <div class="art-desc">Аддоны, версия, память — диагностика по шагам.</div>
-                <div class="art-foot"><span>⏱ 5 мин</span><span class="rdm" style="color:#e84040">Читать →</span></div>
-              </div>
-            </div>
-            <div class="art rv" style="--ac:#e84040">
-              <div class="art-ph" style="background:#1e0f0f">📡</div>
-              <div class="art-body">
-[23.04.2026 0:55] 🤫: <div class="art-tag" style="background:rgba(232,64,64,.1);color:#e84040">🐛 Ошибки</div>
-                <div class="art-title">Мультиплеер не работает: причины и решения</div>
-                <div class="art-desc">Xbox Live, NAT, версии — все причины потери соединения.</div>
-                <div class="art-foot"><span>⏱ 5 мин</span><span class="rdm" style="color:#e84040">Читать →</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="gdiv"></div>
-
-        <!-- NEWBIE -->
-        <div id="newbie">
-          <div class="stitle">🌱 Для новичков</div>
-          <div class="arts-grid">
-            <div class="art rv" onclick="openA('firstnight')" style="--ac:#3fb950">
-              <div class="art-iw"><img src="https://i.ytimg.com/vi/0pj4tF1rBSA/maxresdefault.jpg" alt="Первая ночь" onerror="this.parentNode.innerHTML='<div class=art-ph>🌑</div>'"></div>
-              <div class="art-body">
-                <div class="art-tag" style="background:rgba(63,185,80,.1);color:#3fb950">🌱 Новичкам</div>
-                <div class="art-title">Как выжить первую ночь в Minecraft</div>
-                <div class="art-desc">10-минутный план с нуля: дерево, кровать, укрытие.</div>
-                <div class="art-foot"><span>⏱ 4 мин</span><span class="rdm" style="color:#3fb950">Читать →</span></div>
-              </div>
-            </div>
-            <div class="art rv" style="--ac:#3fb950">
-              <div class="art-ph">🎮</div>
-              <div class="art-body">
-                <div class="art-tag" style="background:rgba(63,185,80,.1);color:#3fb950">🌱 Новичкам</div>
-                <div class="art-title">Управление в Minecraft PE: полная шпаргалка</div>
-                <div class="art-desc">Все кнопки, жесты, как настроить под себя.</div>
-                <div class="art-foot"><span>⏱ 3 мин</span><span class="rdm" style="color:#3fb950">Читать →</span></div>
-              </div>
-            </div>
-            <div class="art rv" style="--ac:#3fb950">
-              <div class="art-ph">⚒️</div>
-              <div class="art-body">
-                <div class="art-tag" style="background:rgba(63,185,80,.1);color:#3fb950">🌱 Новичкам</div>
-                <div class="art-title">Крафт: как работает верстак и печь</div>
-                <div class="art-desc">Сетка рецептов, 15 важнейших рецептов для старта.</div>
-                <div class="art-foot"><span>⏱ 4 мин</span><span class="rdm" style="color:#3fb950">Читать →</span></div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="gdiv"></div>
-
-        <!-- ALL ARTICLES -->
-        <div id="all">
-          <div class="stitle">📋 Все статьи</div>
-          <div class="ftabs">
-            <div class="ftab active" onclick="filt('all',this)">Все</div>
-            <div class="ftab" onclick="filt('s',this)">⚔️ Выживание</div>
-            <div class="ftab" onclick="filt('m',this)">🧩 Моды</div>
-            <div class="ftab" onclick="filt('b',this)">🏗️ Постройки</div>
-            <div class="ftab" onclick="filt('sec',this)">💎 Секреты</div>
-            <div class="ftab" onclick="filt('bug',this)">🐛 Ошибки</div>
-            <div class="ftab" onclick="filt('n',this)">🌱 Новичкам</div>
-          </div>
-          <div id="alList"></div>
-        </div>
-
-      </div>
-
-      <!-- SIDEBAR -->
-      <aside>
-        <div class="sw">
-          <div class="sw-t">🏆 Топ статей</div>
-          <div class="ti" onclick="openA('diamonds')">
-            <div class="ti-n">01</div>
-            <img class="ti-img" src="https://i.ytimg.com/vi/IHzDTibLqsg/hqdefault.jpg" alt="" onerror="this.style.display='none'">
-            <div class="ti-t">Как найти алмазы в 1.20–1.21</div>
-          </div>
-          <div class="ti" onclick="openA('firstnight')">
-            <div class="ti-n">02</div>
-            <img class="ti-img" src="https://i.ytimg.com/vi/0pj4tF1rBSA/hqdefault.jpg" alt="" onerror="this.style.display='none'">
-            <div class="ti-t">Как выжить первую ночь</div>
-          </div>
-          <div class="ti" onclic
-[23.04.2026 0:55] 🤫: k="openA('mods')">
-            <div class="ti-n">03</div>
-            <div class="ti-img" style="background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:22px">🧩</div>
-            <div class="ti-t">Установка модов без ошибок</div>
-          </div>
-          <div class="ti" onclick="openA('lag')">
-            <div class="ti-n">04</div>
-            <div class="ti-img" style="background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:22px">🔧</div>
-            <div class="ti-t">Почему лагает Minecraft PE</div>
-          </div>
-          <div class="ti" onclick="openA('secrets')">
-            <div class="ti-n">05</div>
-            <div class="ti-img" style="background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:22px">💎</div>
-            <div class="ti-t">15 скрытых фишек Minecraft</div>
-          </div>
-        </div>
-
-        <div class="sw">
-          <div class="sw-t">📌 Версии</div>
-          <div class="vbox"><div class="vl">Bedrock Edition</div><div class="vn">1.21.3</div><div class="vs">Все статьи проверены · Апр 2025</div></div>
-          <div class="vbox" style="border-color:var(--gold)"><div class="vl" style="color:var(--gold)">Java Edition</div><div class="vn">1.21.4</div><div class="vs">Часть советов работает</div></div>
-        </div>
-
-        <div class="sw">
-          <div class="sw-t">⚡ Советы на ходу</div>
-          <div class="qt"><div class="qt-ico">🛏️</div><div>Кровать = точка спауна. Ставьте в доме!</div></div>
-          <div class="qt"><div class="qt-ico">🧲</div><div>Fortune III: до 4 алмазов с одной руды</div></div>
-          <div class="qt"><div class="qt-ico">🍎</div><div>Золотое яблоко + молоко = убирает любой эффект</div></div>
-          <div class="qt"><div class="qt-ico">🔦</div><div>Факелы мешают падению песка и гравия</div></div>
-          <div class="qt"><div class="qt-ico">🐸</div><div>Лягушки едят магмовых кубов → жемчуг лягушки</div></div>
-        </div>
-      </aside>
+  <!-- QUICK TIPS -->
+  <div class="sw">
+    <div class="sw-h">💡 Быстрые советы</div>
+    <div class="sw-b">
+      <div class="tip-box">🪣 <b>Вылей воду перед приземлением</b> — отменяет урон с любой высоты</div>
+      <div class="tip-box">💎 <b>Y=-54</b> — лучший уровень для алмазов в 1.20–1.21</div>
+      <div class="tip-box">🧲 <b>Fortune III</b> даёт до 4 алмазов с одной руды</div>
+      <div class="tip-box">🌻 <b>Подсолнух</b> всегда смотрит на восток — бесплатный компас</div>
+      <div class="tip-box">🎃 <b>Тыква на голове</b> — эндермены становятся нейтральными</div>
     </div>
-  </section>
-</div>
+  </div>
 
+</aside>
+</div><!-- /wrap -->
+
+<!-- FOOTER -->
 <footer>
   <div class="ft-in">
     <div>
-      <a class="ft-logo" href="#"><span class="gr">Грунт</span>Вики</a>
-      <div class="ft-desc">Информационный хаб по Minecraft PE и Bedrock Edition. Гайды, моды, секреты — актуально для 1.20–1.21.</div>
+      <a class="ft-logo" href="#"><span class="blue">MCPE</span>HUB</a>
+      <p class="ft-desc">Крупнейший русскоязычный хаб по Minecraft PE и Bedrock Edition. Аддоны, моды, карты, шейдеры и гайды.</p>
+      <a class="ft-tg" href="https://t.me/mcpehubs" target="_blank">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8l-1.7 8c-.12.56-.46.7-.92.43l-2.52-1.86-1.22 1.17c-.14.13-.25.24-.5.24l.18-2.6 4.7-4.24c.2-.18-.05-.28-.32-.1L7.42 14.6 5 13.86c-.54-.17-.55-.54.12-.79l8.92-3.44c.45-.17.84.11.7.77z"/></svg>
+        t.me/mcpehubs
+      </a>
     </div>
     <div class="ft-col">
-      <h4>Разделы</h4>
-      <a href="#surv">⚔️ Выживание</a><a href="#mods">🧩 Моды</a>
-      <a href="#sec">💎 Секреты</a><a href="#bugs">🐛 Ошибки</a>
-      <a href="#newbie">🌱 Новичкам</a>
+      <h4>Контент</h4>
+      <a href="#download">Скачать MCPE</a>
+      <a href="#addons">Аддоны</a>
+      <a href="#mods">Моды</a>
+      <a href="#maps">Карты</a>
+      <a href="#shaders">Шейдеры</a>
     </div>
     <div class="ft-col">
-      <h4>Топ статей</h4>
-      <a href="#" onclick="openA('diamonds')">Как найти алмазы</a>
-      <a href="#" onclick="openA('firstnight')">Первая ночь</a>
-      <a href="#" onclick="openA('mods')">Установка модов</a>
-      <a href="#" onclick="openA('lag')">Устранение лагов</a>
-      <a href="#" onclick="openA('secrets')">Скрытые фишки</a>
+      <h4>Сообщество</h4>
+      <a href="https://t.me/mcpehubs" target="_blank">Telegram-группа</a>
+      <a href="#guides">Гайды</a>
+      <a href="https://mcpedl.com" target="_blank">MCPEDL</a>
+      <a href="https://minecraft.net" target="_blank">minecraft.net</a>
     </div>
     <div class="ft-col">
       <h4>О сайте</h4>
-      <a href="#">О проекте</a><a href="#">Предложить статью</a><a href="#">Контакты</a>
+      <a href="#">О проекте</a>
+      <a href="#">Добавить аддон</a>
+      <a href="#">Контакты</a>
     </div>
   </div>
   <div class="ft-bot">
-    <span>© 2025 ГрунтВики — не аффилирован с Mojang / Microsoft</span>
-    <span>v1.21 · Апрель 2025</span>
+    <span>© 2025 MCPEHUB · Не аффилирован с Mojang / Microsoft</span>
+    <span>Minecraft 1.21 · <a href="https://t.me/mcpehubs" target="_blank">t.me/mcpehubs</a></span>
   </div>
 </footer>
 
 <!-- MODAL -->
 <div class="modal-bg" id="modal" onclick="closeBg(event)">
-  <div class="modal-box" id="mbox"></div>
+  <div class="mbox" id="mbox"></div>
 </div>
 
 <script>
-// Stars
-const sc = document.getElementById('stars');
-for(let i=0;i<30;i++){
-  const s=document.createElement('div');
-  s.className='star';
-  const sz=Math.random()*3+1;
-  s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*3}s`;
-  sc.appendChild(s);
+/* ── ADDONS DATA ── */
+const AD = [
+  {id:'furniture',cat:'furniture',img:'https://i.ytimg.com/vi/b0IAQheE0-Q/maxresdefault.jpg',ico:'🛋️',
+   title:'BONY162 Furniture — 200+ предметов',tags:['🔥 ТОП','ОБНОВЛЁН','БЕСПЛАТНО','1.21+'],
+   desc:'Диваны, кровати, лампы, кухня, ванная. Работает в выжива
+[23.04.2026 23:54] 🤫: нии.',views:'180K',
+   url:'https://mcpedl.com/bony162-furniture-addon-1-2/'},
+  {id:'dragons',cat:'mobs',img:'',ico:'🐉',
+   title:'Dragon Mounts — ездовые драконы',tags:['НОВОЕ','1.21+'],
+   desc:'8 видов дракона: огненный, ледяной, грозовой. Приручи и прокачай.',views:'34K',
+   url:'https://mcpedl.com/?s=dragon+mounts'},
+  {id:'guns',cat:'weapons',img:'https://i.ytimg.com/vi/3sXMiHinuV4/maxresdefault.jpg',ico:'🔫',
+   title:'Simple Warfare II — оружие и техника',tags:['🔥 ХИТ','1.20–1.21'],
+   desc:'Автоматы, пистолеты, гранаты, транспорт. Реалистичные анимации.',views:'120K',
+   url:'https://mcpedl.com/3d-simplified-gun-addon/'},
+  {id:'deco',cat:'decoration',img:'',ico:'🏡',
+   title:'Decoration+ — 500+ декоративных блоков',tags:['БЕСПЛАТНО','1.20+'],
+   desc:'Колонны, фонари, цветочные горшки, флаги и плитки для любого стиля.',views:'28K',
+   url:'https://mcpedl.com/?s=decoration+addon'},
+  {id:'cars',cat:'vehicles',img:'',ico:'🚗',
+   title:'Vehicle Addon — машины и мотоциклы',tags:['🔥 ХИТ','1.21+'],
+   desc:'Джипы, спортивные авто, квадроциклы. Реалистичное управление.',views:'67K',
+   url:'https://mcpedl.com/?s=vehicle'},
+  {id:'tools',cat:'survival',img:'',ico:'⚒️',
+   title:'More Tools — инструменты выше незерита',tags:['НОВОЕ','1.21+'],
+   desc:'Кристальный, драконий, эндерный тиры инструментов.',views:'22K',
+   url:'https://mcpedl.com/?s=more+tools'},
+];
+
+function tagClass(t){
+  if(t.includes('ХИТ')||t.includes('ТОП')) return 'tag-hot';
+  if(t.includes('НОВ')||t.includes('ОБН')) return 'tag-new';
+  if(t.includes('БЕСПЛАТ')) return 'tag-free';
+  return 'tag-ver';
 }
 
-// Articles data
-const DA = {
+function renderAD(cat='all'){
+  const grid = document.getElementById('addonGrid');
+  const list = cat==='all' ? AD : AD.filter(a=>a.cat===cat);
+  grid.innerHTML = list.map(a=>`
+    <div class="acard" onclick="openA('${a.id}')">
+      ${a.img
+        ? `<img class="acard-img" src="${a.img}" alt="${a.title}" onerror="this.outerHTML='<div class=acard-img-ph>${a.ico}</div>'">`
+        : `<div class="acard-img-ph">${a.ico}</div>`}
+      <div class="acard-body">
+        <div class="acard-tags">${a.tags.map(t=>`<span class="tag ${tagClass(t)}">${t}</span>`).join('')}</div>
+        <div class="acard-title">${a.title}</div>
+        <div class="acard-desc">${a.desc}</div>
+        <div class="acard-foot">
+          <a class="acard-dl" href="${a.url}" target="_blank" onclick="event.stopPropagation()">⬇ Скачать</a>
+          <span class="acard-views">👁 ${a.views}</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function filterAddons(cat, el){
+  document.querySelectorAll('#addonTabs .tab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  renderAD(cat);
+}
+renderAD();
+
+/* ── GUIDES DATA ── */
+const GD = {
   diamonds:{
-    tag:'⚔️ Выживание',img:'https://i.ytimg.com/vi/IHzDTibLqsg/maxresdefault.jpg',
+    tag:'Выживание', img:'https://i.ytimg.com/vi/IHzDTibLqsg/maxresdefault.jpg',
     title:'Как найти алмазы в Minecraft 1.20–1.21',
-    intro:'После Caves & Cliffs (1.18+) алмазы больше не на Y=12. Максимальная концентрация — Y от -58 до -54. На Y=-54 вероятность встретить алмазную руду в 3 раза выше, чем
-[23.04.2026 0:55] 🤫: на Y=0.',
+    intro:'После Caves & Cliffs (1.18+) алмазы распределены иначе. Лучший уровень — Y=-54. На этой глубине концентрация в 3× выше, чем на старом Y=12.',
     steps:[
-      {t:'Шаг 1: Спускаемся на правильную глубину',b:'Включи координаты: Настройки → Видео → Показать координаты. Копай до Y=-54. На мобильном это примерно на 10 блоков ниже уровня бедрока. Y=12 — устаревший метод из 1.17.'},
-      {t:'Шаг 2: Branch mining — правильный паттерн',b:'Рой главный туннель 1×2, потом ответвления каждые 3 блока влево и вправо. Просматриваешь максимум площади без лишних трудозатрат. 1 час branch mining = 20–40 алмазов в среднем.'},
-      {t:'Шаг 3: Fortune III — обязательно',b:'Fortune III умножает дроп: с одной руды 2–4 алмаза вместо одного. Это разница в 200–300% за сессию. Зачарование через стол (15 уровней) или наковальню + книгу. Без него теряешь половину добычи.'},
+      {t:'Шаг 1 — Правильная глубина', b:'Включи координаты: Настройки → Видео → Показать координаты. Копай до Y=-54. На мобильном — примерно 10 блоков выше бедрока. Y=12 — устаревший метод из версии 1.17.'},
+      {t:'Шаг 2 — Branch Mining', b:'Главный туннель 1×2, ответвления каждые 3 блока влево и вправо. Просматриваешь максимум площади. 1 час = 20–40 алмазов в среднем.'},
+      {t:'Шаг 3 — Fortune III обязательно', b:'Fortune III: 2–4 алмаза вместо одного с каждой руды. Разница 200–300% за сессию. Без Fortune теряешь больше половины добычи.'},
     ],
-    tips:['🔦 Факелы только на правую стену — всегда знаешь, где выход.','🍎 Возьми стек еды — долгая копка быстро жрёт насыщение.','🧲 Unbreaking III + Mending = кирка живёт вечно.','💡 Алмазы часто рядом с лавой — держи ведро воды в хотбаре.'],
-    errors:['❌ Копать на Y=12 — мало алмазов, устаревший метод.','❌ Кирка без Fortune — теряешь 50–75% алмазов.','❌ Не освещать туннели — моб убьёт, потеряешь всё.']
+    tips:['🔦 Факелы только на правую стену — всегда знаешь, где выход','🍎 Возьми стек еды — долгая копка быстро сжигает насыщение','💡 Алмазы часто рядом с лавой — держи ведро воды в хотбаре'],
+    errors:['❌ Копать на Y=12 — устаревший метод, там мало алмазов','❌ Кирка без Fortune — теряешь 50–75% добычи','❌ Не освещать туннели — моб убьёт и потеряешь всё']
   },
   firstnight:{
-    tag:'🌱 Для новичков',img:'https://i.ytimg.com/vi/0pj4tF1rBSA/maxresdefault.jpg',
-    title:'Как выжить первую ночь в Minecraft: пошагово',
-    intro:'Ночь наступает через 10 реальных минут после спауна. Нужно: дерево, инструменты, еда, кровать, укрытие. Без хоть одного — большой риск погибнуть.',
+    tag:'Новичкам', img:'https://i.ytimg.com/vi/0pj4tF1rBSA/maxresdefault.jpg',
+    title:'Как выж
+[23.04.2026 23:54] 🤫: ить первую ночь в Minecraft PE',
+    intro:'Ночь наступает через 10 реальных минут. Без дерева, инструментов, кровати и укрытия — большой риск погибнуть.',
     steps:[
-      {t:'Шаг 1 (0–3 мин): Дерево и инструменты',b:'Сразу рубишь 15 блоков дерева. Крафтишь верстак (4 доски), деревянную кирку (3 доски + 2 палки). Добываешь 15 камня, делаешь каменную кирку и каменный меч. Деревянные инструменты только для старта.'},
-      {t:'Шаг 2 (3–6 мин): Еда',b:'Убей 2–3 курицы или корову. Сделай печь (8 камней) и зажарь мясо. Сырое мясо восстанавливает меньше голода и может дать эффект "Голод". Нет животных — собери яблоко с дерева или пшеницу.'},
-      {t:'Шаг 3 (6–10 мин): Кровать и укрытие',b:'Убей 3 овцы → 3 шерсти → кровать (3 шерсти + 3 доски). Быстрый дом: вкопайся в холм, закрой вход досками, поставь кровать. Ляг — пропустишь ночь и сохранишь точку спауна.'},
+      {t:'0–3 мин — Дерево и инструменты', b:'15 блоков дерева → верстак (4 доски) → деревянная кирка → 15 камня → каменная кирка + каменный меч. Деревянные инструменты — только для старта, они ломаются быстро.'},
+      {t:'3–6 мин — Еда', b:'Убей 2–3 курицы или корову → сделай печь (8 камней) → зажарь мясо. Сырое мясо даёт меньше голода и эффект «Голод». Нет животных — яблоко с дерева.'},
+      {t:'6–10 мин — Кровать и укрытие', b:'Убей 3 овцы → 3 шерсти → кровать (3 шерсти + 3 доски). Быстрый дом: вкопайся в холм, закрой досками, поставь кровать. Ляг спать — пропустишь ночь.'},
     ],
-    tips:['🛏️ Кровать — приоритет №1. И точку спауна ставит, и ночь пропускает.','💡 6–8 факелов мешают мобам спавниться внутри.','🐑 Три овцы дают шерсть — ищи их сразу на спауне.','🗡️ Каменный меч убивает зомби за 3 удара — держи в руке ночью.'],
-    errors:['❌ Уходить далеко от спауна в первый день — потеряешь базу навсегда.','❌ Не делать укрытие — крипперы убивают за 3–5 секунд.','❌ Строить дом из дерева у лавы — сгорит вместе с тобой.']
+    tips:['🛏️ Кровать — приоритет №1: точка спауна + пропуск ночи','💡 6–8 факелов мешают мобам спавниться внутри','🐑 3 овцы = шерсть для кровати — ищи их сразу на спауне'],
+    errors:['❌ Уходить далеко от спауна — потеряешь базу навсегда','❌ Не делать укрытие — крипперы убивают за 3–5 секунд','❌ Деревянный дом у лавы — сгорит вместе с тобой']
   },
   mods:{
-    tag:'🧩 Моды',img:'https://is3-ssl.mzstatic.com/image/thumb/Purple221/v4/39/aa/00/39aa0030-c7cb-6c4b-cdde-8de5af14db84/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/460x0w.webp',
-    title:'Как установить моды в Minecraft PE без ошибок',
-    intro:'Моды для PE — это аддоны (.mcaddon / .mcpack). Устанавливаются через встроенный импорт Minecraft без root-прав. Главное — правильный файл и правильные шаги.',
+    tag:'Аддоны', img:'',
+    title:'Как установить аддоны в Minecraft PE без ошибок',
+    intro:'Аддоны для PE — файлы .mcaddon или .mcpack. Устанавливаются через встроенный импорт Minecraft. Root-права и сторонние приложения не нужны.',
     steps:[
-      {t:'Шаг 1: Скачиваем правильный файл',b:'Нужен .mcaddon или .mcpack — никаких .zip, .apk, .exe. Надёжные источники: MCPEDL.com, CurseForge Bedrock. Сайты с "100 модов одним архивом" — мусор или вирусы.'},
-      {t:'Шаг 2: Импортируем в Minecraft',b:'Android: файловый менеджер → нажми на .mcaddon → "Открыть в Minecraft". iOS: скачивай через Safari → "Поделиться" → "Скопировать в Minecraft". Minecraft откроется сам. Жди "Импорт выполнен".'},
-      {t:'Шаг 3: Активируем в мире',b:'Создай новый мир или зайди в настройки существующего → раздел "Аддоны" → включи "Поведения" и "Ресурсы" (нажми "+" рядом с аддоном) → сохрани и запусти.'},
+      {t:'Шаг 1 — Скачать правильный файл', b:'Нужен .mcaddon или .mcpack. Никаких .zip, .apk, .exe. Проверенные источники: MCPEDL.com, CurseForge Bedrock, наш Telegram t.me/mcpehubs.'},
+      {t:'Шаг 2 — Импортировать', b:'Android: файловый менеджер → нажми на .mcaddon → «Открыть в Minecraft». iOS: Safari → «Поделиться» → «Скопировать в Minecraft». Жди: «Импорт выполнен».'},
+      {t:'Шаг 3 — Активировать в мире', b:'Настройки мира → Аддоны → включи «Поведения» и «Ресурсы» (нажми «+») → Сохрани → Запусти мир.'},
     ],
-    tips:['📁 Несколько модов — проверь совместимость. Аддоны часто конфликтуют.','🔄 Мод не работает — попробуй новый мир, а не старый.','📋 Сохрани бэкап мира перед установкой нового мода.'],
-    errors:['❌ Качать .zip вместо .mcaddon — придётся переименовывать вручную.','❌ Активировать в старом мире без бэкапа — мир может сломаться.','❌ Ставить 10+ модов сраз
-[23.04.2026 0:55] 🤫: у — сначала проверь каждый по отдельности.']
+    tips:['📁 Несколько аддонов — проверяй совместимость','🔄 Не работает — попробуй новый мир','📋 Делай бэкап мира перед установкой нового аддона'],
+    errors:['❌ Скачивать .zip вместо .mcaddon','❌ Активировать в старом мире без бэкапа — мир может сломаться','❌ Ставить 10+ аддонов сразу без проверки']
   },
   lag:{
-    tag:'🐛 Ошибки',img:'',
-    title:'Почему лагает Minecraft PE и как это исправить',
-    intro:'Лаги из-за слабого железа, неправильных настроек, переполненного мира или конфликта аддонов. Найди свою причину — и применяй нужное решение.',
+    tag:'Ошибки', img:'',
+    title:'Почему лагает Minecraft PE и как убрать лаги',
+    intro:'Причины: слабое железо, неправильные настройки, переполненный мир, конфликт аддонов. Каждую решаем по шагам.',
     steps:[
-      {t:'Шаг 1: Снижаем настройки графики',b:'Настройки → Видео: дальность прорисовки 6–8 чанков, Fancy Leaves выкл, Fancy Clouds выкл, отражения выкл, Particle на минимум. Только это даёт 30–50% прироста FPS на слабых устройствах.'},
-      {t:'Шаг 2: Чистим кэш и фоновые процессы',b:'Android: Настройки → Приложения → Minecraft → Очистить кэш. iOS: перезагрузи устройство. Закрой все фоновые приложения. Minecraft нужно минимум 2 ГБ свободной RAM.'},
-      {t:'Шаг 3: Оптимизируем мир',b:'Удали лишние аддоны — даже неактивные нагружают. Не держи больше 50 мобов рядом с базой. Убери постоянно тикающие редстоун-схемы. Большой мир → создай новый, перенеси вещи.'},
+      {t:'Шаг 1 — Настройки графики', b:'Настройки → Видео: дальность прорисовки 6–8 чанков, Fancy Leaves выкл, Fancy Clouds выкл, отражения выкл, Particle → минимум. Даёт 30–50% прироста FPS.'},
+      {t:'Шаг 2 — Кэш и RAM', b:'Android: Настройки → Приложения → Minecraft → Очистить кэш. iOS: перезагрузи устройство. Закрой все фоновые приложения — Minecraft нужно минимум 2 ГБ RAM.'},
+      {t:'Шаг 3 — Оптимизация мира', b:'Удали лишние аддоны — неактивные тоже нагружают. Не держи 50+ мобов рядом с базой. Убери постоянно тикающий редстоун.'},
     ],
-    tips:['📊 Включи FPS-счётчик — увидишь результат каждого изменения.','🧹 Раз в 2 недели чисти кэш — он копится до 1–2 ГБ.','🌐 В мультиплеере лаги часто со стороны сервера, не твоего телефона.','🔋 Режим экономии батареи снижает FPS — выключай во время игры.'],
-    errors:['❌ Дальность прорисовки 16+ на телефоне — гарантированные лаги.','❌ Шейдеры без поддержки устройства — вылет или 5 FPS.','❌ Играть при заряде < 20% — процессор принудительно замедляется.']
+    tips:['📊 Включи FPS-счётчик — сразу увидишь эффект изменений','🧹 Чисти кэш раз в 2 недели — копится до 2 ГБ','🔋 Режим экономии батареи снижает FPS — выключи во время игры'],
+    errors:['❌ Дальность прорисовки 16+ на телефоне — гарантированные лаги','❌ Шейдеры без поддержки устройства — вылет или 5 FPS','❌ Играть при заряде < 20% — процессор принудительно замедляется']
   },
   secrets:{
-    tag:'💎 Секреты',img:'https://i.ytimg.com/vi/IHzDTibLqsg/maxresdefault.jpg',
-    title:'15 скрытых фишек Minecraft PE, о которых мало кто знает',
-    intro:'Minecraft полон нюансов, которых нет в туториалах. Всё ниже проверено на 1.20–1.21 Bedrock — ни одна фишка не выдумана.',
+    tag:'Секреты', img:'https://i.ytimg.com/vi/IHzDTibLqsg/maxresdefault.jpg',
+    title:'15 скрытых фишек Minecraft PE',
+    intro:'Эти механики не описаны в официальных туториалах. Всё проверено на 1.20–1.21 Bedrock Edition.',
     steps:[
-      {t:'Фишки 1–5: Выживание',b:'1. Вода из ведра перед приземлением — урон с любой высоты = 0. 2. Молния + крипер = заряжённый крипер, взрывающий головы мобов. 3. Подсолнух = восток, работает как компас. 4. Тыква на голове = эндермены нейтральны. 5. Калитки — твёрдый блок для прыжков, мобы через них не прыгают.'},
-      {t:'Фишки 6–10: Крафт и редстоун',b:'6. Знаки и листья не горят — декор у огня. 7. Факел разрушает падающий песок — быстрая очистка. 8. Mending + наковальня = вечное оружие за опыт. 9. Лестница под кроватью = скрытое пространство. 10. Мёд на стене улья замедляет падение.'},
-      {t:'Фишки 11–15: Секреты мира',b:'11. Под библиотеками в деревнях — скрытые комнаты (копай вниз). 12. Лошадь + удочка = управление без кнопок. 13. Тотем бессмертия спасает от любой смерти — даже Читы. 14. Trident + Riptide в дождь = полёт по воздуху. 15. Лягушки едят маленьких магмовых кубов → жемчуг лягушки.'},
+      {t:'Фишки 1–5 — Выживание', b:'1. Вода из ведра перед приземлением = 0 урона с любой высоты. 2. Молния + крипер = заряженный крипер. 3. Подсолнух смотрит на восток — компас. 4. Тыква на голове — эндермены нейтральны. 5. Калитки — твёрдый блок для прыжков, мобы через них не прыгают.'},
+      {t:'Фишки 6–10 — Строительство', b:'6. Знаки и листья не горят. 7. Факел разрушает падающий песок и гравий. 8. Mending = вечное оружие за опыт. 9. Лестница под кровать
+[23.04.2026 23:54] 🤫: ю — скрытая комната. 10. Мёд на стене улья замедляет падение.'},
+      {t:'Фишки 11–15 — Мир', b:'11. Под библиотеками в деревнях — скрытые комнаты (копай вниз). 12. Лошадь + удочка = управление. 13. Тотем бессмертия работает только в руке. 14. Trident + Riptide в дождь = полёт. 15. Лягушки едят маленьких магмовых кубов → жемчуг лягушки.'},
     ],
-    tips:['🧪 Тестируй в творческом режиме — не потеряешь ресурсы.','📝 Записывай координаты структур — карта их не показывает.','⚡ Заряжённый крипер — единственный способ получить голову моба в Bedrock.'],
-    errors:['❌ Смотреть на эндермена без тыквы рядом — атакует мгновенно.','❌ Riptide в помещении — разобьёшься о потолок.','❌ Тотем в инвентаре, а не в руке — не сработает при смерти.']
+    tips:['🧪 Тестируй в творческом режиме — не тратишь ресурсы','⚡ Заряженный крипер — единственный способ получить голову моба в Bedrock'],
+    errors:['❌ Смотреть на эндермена без тыквы рядом — атакует мгновенно','❌ Riptide в помещении — разобьёшься о потолок','❌ Тотем в инвентаре, а не в руке — не сработает']
   }
 };
 
-const ALL=[
-  {c:'s',ico:'💎',tag:'⚔️ Выживание',tc:'#5aaa2b',tb:'rgba(90,170,43,.15)',t:'Как найти алмазы в Minecraft 1.20–1.21',d:'Y=-54, branch mining, Fortune III.',key:'diamonds'},
-  {c:'s',ico:'⭐',tag:'⚔️ Выживание',tc:'#5aaa2b',tb:'rgba(90,170,43,.15)',t:'Фарм опыта: лучшие методы без модов',d:'Зомби-ферма, ферма пауков, рыбалка — XP в час.'},
-  {c:'s',ico:'✨',tag:'⚔️ Выживание',tc:'#5aaa2b',tb:'rgba(90,170,43,.15)',t:'Зачарования: что брать в первую очередь',d:'Fortune, Mending, Unbreaking — приоритеты.'},
-  {c:'s',ico:'🐉',tag:'⚔️ Выживание',tc:'#5aaa2b',tb:'rgba(90,170,43,.15)',t:'Как убить Эндер-дракона: пошаговый гайд',d:'Кристаллы, паттерн атаки, минимальный сет.'},
-  {c:'s',ico:'🌾',tag:'⚔️ Выживание',tc:'#5aaa2b',tb:'rgba(90,170,43,.15)',t:'Фарм еды: автоматические фермы без редстоуна',d:'Пшеница, морковь, картофель.'},
-  {c:'s',ico:'🔥',tag:'⚔️ Выживание',tc:'#5aaa2b',tb:'rgba(90,170,43,.15)',t:'Нижний мир: как безопасно исследовать Незер',d:'Биомы, крепость, бастион, ма
-[23.04.2026 0:55] 🤫: ршруты.'},
-  {c:'s',ico:'🪙',tag:'⚔️ Выживание',tc:'#5aaa2b',tb:'rgba(90,170,43,.15)',t:'Торговля с жителями: как получить максимум',d:'Лучшие профессии, снижение цен.'},
-  {c:'s',ico:'💀',tag:'⚔️ Выживание',tc:'#5aaa2b',tb:'rgba(90,170,43,.15)',t:'Как победить Визера без лишних смертей',d:'Место боя, броня, тактика в Незере.'},
-  {c:'s',ico:'⚒️',tag:'⚔️ Выживание',tc:'#5aaa2b',tb:'rgba(90,170,43,.15)',t:'Алмаз vs Незерит: реальная разница',d:'Прочность, урон, скорость добычи.'},
-  {c:'m',ico:'🧩',tag:'🧩 Моды',tc:'#bc8cff',tb:'rgba(188,140,255,.1)',t:'Как установить моды в Minecraft PE без ошибок',d:'.mcaddon через файловый менеджер.',key:'mods'},
-  {c:'m',ico:'📦',tag:'🧩 Моды',tc:'#bc8cff',tb:'rgba(188,140,255,.1)',t:'Топ-10 модов для Minecraft PE 1.20–1.21',d:'Лучшие аддоны 2024 — обзор и ссылки.'},
-  {c:'m',ico:'🎨',tag:'🧩 Моды',tc:'#bc8cff',tb:'rgba(188,140,255,.1)',t:'Шейдеры для Minecraft PE: RTX и SEUS',d:'Совместимые шейдеры Android/iOS.'},
-  {c:'m',ico:'🛋️',tag:'🧩 Моды',tc:'#bc8cff',tb:'rgba(188,140,255,.1)',t:'Мод на мебель: Furniture Addon',d:'Что добавляет, как крафтить, совместимость.'},
-  {c:'m',ico:'🌍',tag:'🧩 Моды',tc:'#bc8cff',tb:'rgba(188,140,255,.1)',t:'Аддоны на новые биомы: топ-3 паков',d:'Что внутри и известные баги.'},
-  {c:'m',ico:'🗺️',tag:'🧩 Моды',tc:'#bc8cff',tb:'rgba(188,140,255,.1)',t:'Моды для мини-игр: паркур и скай-варс',d:'Аддоны-карты для ЛАН без сервера.'},
-  {c:'b',ico:'🏠',tag:'🏗️ Постройки',tc:'#f5c518',tb:'rgba(245,197,24,.1)',t:'Стартовый дом: быстро, надёжно, красиво',d:'Дизайн 9×9 с подвалом за первые 30 минут.'},
-  {c:'b',ico:'⚡',tag:'🏗️ Постройки',tc:'#f5c518',tb:'rgba(245,197,24,.1)',t:'Автоворота и ловушки на редстоуне',d:'Схемы из 5–10 блоков с детекторами.'},
-  {c:'b',ico:'🏰',tag:'🏗️ Постройки',tc:'#f5c518',tb:'rgba(245,197,24,.1)',t:'Медиевальная деревня: как планировать',d:'Принципы, блоки, чертежи 4 зданий.'},
-  {c:'b',ico:'🔥',tag:'🏗️ Постройки',tc:'#f5c518',tb:'rgba(245,197,24,.1)',t:'Нижний мир-база: убежище в Незере',d:'Материалы и защита от огня и взрывов.'},
-  {c:'b',ico:'🌊',tag:'🏗️ Постройки',tc:'#f5c518',tb:'rgba(245,197,24,.1)',t:'Как строить под водой: советы',d:'Метод губки, строительство без кислорода.'},
-  {c:'b',ico:'⚙️',tag:'🏗️ Постройки',tc:'#f5c518',tb:'rgba(245,197,24,.1)',t:'Ферма мобов с нуля за 1 час',d:'Схема зомби-фермы, дроп и XP.'},
-  {c:'b',ico:'🏙️',tag:'🏗️ Постройки',tc:'#f5c518',tb:'rgba(245,197,24,.1)',t:'Современный дом из бетона и стекла',d:'Минимализм, блок-схема, освещение.'},
-  {c:'sec',ico:'💎',tag:'💎 Секреты',tc:'#3de6e6',tb:'rgba(61,230,230,.1)',t:'15 скрытых фишек Minecraft PE',d:'Вёдра, заряженный крипер, компас-подсолнух.',key:'secrets'},
-  {c:'sec',ico:'🗺️',tag:'💎 Секреты',tc:'#3de6e6',tb:'rgba(61,230,230,.1)',t:'Скрытые структуры: древние города',d:'Команды, биомы, что внутри.'},
-  {c:'sec',ico:'🌱',tag:'💎 Секреты',tc:'#3de6e6',tb:'rgba(61,230,230,.1)',t:'Лучшие семена Minecraft PE 1.21',d:'Топ-8 сидов с деревней и алмазами.'},
-  {c:'sec',ico:'🏘️',tag:'💎 Секреты',tc:'#3de6e6',tb:'rgba(61,230,230,.1)',t:'Секретные комнаты в деревнях',d:'Где спрятаны сундуки под библиотеками.'},
-  {c:'sec',ico:'🔮',tag:'💎 Секреты',tc:'#3de6e6',tb:'rgba(61,230,230,.1)',t:'Дюп-глитчи в Bedrock 1.21',d:'Что работает сейчас — осторожно.'},
-  {c:'bug',ico:'🔧',tag:'🐛 Ошибки',tc:'#e84040',tb:'rgba(232,64,64,.1)',t:'Почему лагает Minecraft PE и как исправить',d:'Графика, кэш, мир — 8 способов.',key:'lag'},
-  {c:'bug',ico:'💥',tag:'🐛 Ошибки',tc:'#e84040',tb:'rgba(232,64,64,.1)',t:'Minecraft PE вылетает: 7 решений',d:'Аддоны, версия, память — диагностика.'},
-  {c:'bug',ico:'📡',tag:'🐛 Ошибки',tc:'#e84040',tb:'rgba(232,64,64,.1)',t:'Мультиплеер не работает: как починить',d:'Xbox Live, NAT, версии.'},
-  {c:'bug',ico:'🧩',tag:'🐛 Ошибки',tc:'#e84040',tb:'rgba(232,64,64,.1)',t:'Ошибка импорта .mcaddon',d:'Три варианта ошибки и решение каждой.'},
-  {c:'bug',ico:'💾',tag:'🐛 Ошибки',tc:'#e84040',tb:'rgba(232,64,64,.1)',t:'Мир не загружается: восстановление',d:'Битый мир, бэкап, что делать.'},
-  {c:'bug',ico:'👾',tag:'🐛 Ошибки',tc:'#e84
-[23.04.2026 0:55] 🤫: 040',tb:'rgba(232,64,64,.1)',t:'Мобы не спавнятся: причины',d:'Мобкап, освещение, дистанция.'},
-  {c:'n',ico:'🌑',tag:'🌱 Новичкам',tc:'#3fb950',tb:'rgba(63,185,80,.1)',t:'Как выжить первую ночь в Minecraft',d:'10-минутный план с нуля.',key:'firstnight'},
-  {c:'n',ico:'🎮',tag:'🌱 Новичкам',tc:'#3fb950',tb:'rgba(63,185,80,.1)',t:'Управление в Minecraft PE: шпаргалка',d:'Все кнопки, жесты, настройка.'},
-  {c:'n',ico:'📖',tag:'🌱 Новичкам',tc:'#3fb950',tb:'rgba(63,185,80,.1)',t:'Режимы игры: выживание и творчество',d:'Чем отличаются и как переключить.'},
-  {c:'n',ico:'⚒️',tag:'🌱 Новичкам',tc:'#3fb950',tb:'rgba(63,185,80,.1)',t:'Крафт: верстак и печь',d:'15 важнейших рецептов для старта.'},
-  {c:'n',ico:'🗺️',tag:'🌱 Новичкам',tc:'#3fb950',tb:'rgba(63,185,80,.1)',t:'Прогрессия: дерево → алмаз → незерит',d:'Цели и ресурсы на каждом этапе.'},
-];
-
-function renderList(cat='all'){
-  const el=document.getElementById('alList');
-  const list=cat==='all'?ALL:ALL.filter(a=>a.c===cat);
-  el.innerHTML=list.map(a=>`
-    <div class="al" onclick="${a.key?`openA('${a.key}')`:''}" >
-      <div class="al-ph">${a.ico}</div>
-      <div class="al-info"><div class="al-t">${a.t}</div><div class="al-d">${a.d}</div></div>
-      <span class="al-tag" style="background:${a.tb};color:${a.tc}">${a.tag}</span>
-    </div>`).join('');
-}
-function filt(c,el){
-  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
-  renderList(c);
-}
-renderList();
-
-function openA(key){
-  const a=DA[key];if(!a)return;
-  const imgH=a.img?`<img class="m-hero" src="${a.img}" alt="" onerror="this.style.display='none'">`:'';
-  document.getElementById('mbox').innerHTML=`
-    ${imgH}
-    <button class="m-close" onclick="closeM()">✕</button>
+function openM(key){
+  const g = GD[key]; if(!g) return;
+  const ih = g.img ? `<img class="m-img" src="${g.img}" alt="" onerror="this.style.display='none'">` : '';
+  document.getElementById('mbox').innerHTML = `
+    ${ih}
+    <button class="m-close" onclick="closeModal()">✕</button>
     <div class="m-body">
-      <div class="m-tag">${a.tag}</div>
-      <h2>${a.title}</h2>
-      <div class="m-intro">${a.intro}</div>
+      <div class="m-tags"><span class="tag tag-new">${g.tag}</span></div>
+      <div class="m-title">${g.title}</div>
+      <div class="m-intro">${g.intro}</div>
+      <div class="m-h3">📋 Пошаговый гайд</div>
+      ${g.steps.map(s=>`<div class="m-step"><div class="m-step-n">${s.t}</div><p>${s.b}</p></div>`).join('')}
       <div class="m-div"></div>
-      <h3>📋 Пошаговый гайд</h3>
-      ${a.steps.map(s=>`<div class="step"><div class="step-n">${s.t}</div><p>${s.b}</p></div>`).join('')}
+      <div class="m-h3">💡 Советы</div>
+      ${g.tips.map(t=>`<div class="m-tip"><span>💡</span><span>${t}</span></div>`).join('')}
       <div class="m-div"></div>
-      <h3>💡 Советы</h3>
-      ${a.tips.map(t=>`<div class="tip-b"><span>💡</span><span>${t}</span></div>`).join('')}
-      <div class="m-div"></div>
-      <h3>⚠️ Ошибки новичков</h3>
-      ${a.errors.map(e=>`<div class="err-b"><span>⚠️</span><span>${e}</span></div>`).join('')}
+      <div class="m-h3">⚠️ Ошибки новичков</div>
+      ${g.errors.map(e=>`<div class="m-err"><span>⚠️</span><span>${e}</span></div>`).join('')}
     </div>`;
-  document.getElementById('modal').classList.add('open');
-  document.body.style.overflow='hidden';
+  open_modal();
 }
-function closeM(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
-function closeBg(e){if(e.target===document.getElementById('modal'))closeM();}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
 
-// Scroll reveal
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show');});
-},{threshold:.1});
-document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+function openA(id){
+  const a = AD.find(x=>x.id===id); if(!a) return;
+  const ih = a.img ? `<img class="m-img" src="${a.img}" alt="" onerror="this.style.display='none'">` : '';
+  document.getElementById('mbox').innerHTML = `
+    ${ih}
+    <button class="m-close" onclick="closeModal()">✕</button>
+    <div class="m-body">
+      <div class="m-tags">${a.tags.map(t=>`<span class="tag ${tagClass(t)}">${t}</span>`).join('')}</div>
+      <div class="m-title">${a.title}</div>
+      <div class="m-intro">${a.desc}</div>
+      <div class="m-h3">📦 Как установить</div>
+      <div class="m-step"><div class="m-step-n">Шаг 1</div><p>Нажмите кнопку «Скачать» ниже — откроется страница на MCPEDL с кнопкой скачивания.</p></div>
+      <div class="m-step"><div class="m-step-n">Шаг 2</div><p>Android: файловый менеджер → нажми на .mcaddon → «Открыть в Minecraft». iOS: Safari → «Поделиться» → «Скопировать в Minecraft».</p></div>
+      <div class="m-step"><div class="m-step-n">Шаг 3</div><p>В Minecraft: Настройки мира → Аддоны → включи «Поведения» и «Ресурсы» → нажми «+» → сохрани → запусти мир.</p></div>
+      <div class="m-tip"><span>💡</span><span>Перед установкой сделай резервную копию своего мира.</span></div>
+      <div class="m-tip"><span>📣</span><span>Ещё аддоны и помощь с установкой — в нашем Telegram: <a href="https://t.me/mcpehubs" target="_blank" style="color:#60a5fa">t.me/mcpehubs</a></span></div>
+      <a class="m-dl-btn" href="${a.url}" target="_blank">⬇ Скачать аддон на MCPEDL</a>
+    </div>`;
+  open_modal();
+}
+
+function open_modal(){
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeBg(e){ if(e.target===document.getElementById('modal')) closeModal(); }
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
 </script>
 </body>
 </html>
